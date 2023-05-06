@@ -20,7 +20,7 @@ import Grid from '@mui/system/Unstable_Grid/Grid';
 //component imports
 
 //store imports
-import { fetchPlaces } from '../store';
+import { fetchPlaces, fetchLocalPlaces } from '../store';
 
 
 const ExpandMore = styled((props) => {
@@ -79,11 +79,19 @@ const Places = ()=> {
 
   console.log(center)
 
-
+  const tryToGetPlaces = () =>{
+    let lat = center.lat
+    let lng = center.lng
+    let radius = 500
+    let type = 'restaurant'
+    console.log(lat, lng, type, radius)
+    dispatch(fetchLocalPlaces({lat, lng, type, radius}))
+  }
 
   return (   
     <>
     <div> 
+      <button onClick={tryToGetPlaces}/>
     {categories.map( category => { return (
       <div>
         <div>
