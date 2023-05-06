@@ -1,5 +1,6 @@
 const conn = require('./conn');
 const User = require('./User');
+const Place = require('./Place');
 
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });

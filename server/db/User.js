@@ -2,7 +2,7 @@ const conn = require('./conn');
 const { STRING, UUID, UUIDV4, TEXT, BOOLEAN } = conn.Sequelize;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const JWT = process.env.JWT;
+const JWT = process.env.JWT || "shhhhhh1234";
 
 
 const User = conn.define('user', {
@@ -28,91 +28,9 @@ const User = conn.define('user', {
   },
   isAdmin: {
     type: BOOLEAN,
-    allowNull: false,
     defaultValue: false
   },
-  avatar: {
-    type: TEXT,
-    get: function(){
-      const prefix = 'data:image/png;base64,';
-      const data = this.getDataValue('avatar');
-      if(!data){
-        return data;
-      }
-      if(data.startsWith(prefix)){
-        return data;
-      }
-      return `${prefix}${data}`;
-    }
-  }
 });
-
-User.prototype.createOrder = async function(){
-  const cart = await this.getCart();
-  cart.isCart = false;
-  await cart.save();
-  return cart;
-
-}
-
-User.prototype.getCart = async function(){
-  let cart = await conn.models.order.findOne({
-    where: {
-      userId: this.id,
-      isCart: true
-    }
-  });
-  if(!cart){
-    cart = await conn.models.order.create({
-      userId: this.id
-    });
-  }
-  cart = await conn.models.order.findByPk(
-    cart.id,
-    {
-      include: [
-        {
-          model: conn.models.lineItem,
-          include: [
-            conn.models.product
-          ]
-        }
-      ]
-    }
-  );
-  return cart;
-}
-
-User.prototype.addToCart = async function({ product, quantity}){
-  const cart = await this.getCart();
-  let lineItem = cart.lineItems.find( lineItem => {
-    return lineItem.productId === product.id; 
-  });
-  if(lineItem){
-    lineItem.quantity += quantity;
-    await lineItem.save();
-  }
-  else {
-    await conn.models.lineItem.create({ orderId: cart.id, productId: product.id, quantity });
-  }
-  return this.getCart();
-};
-
-User.prototype.removeFromCart = async function({ product, quantityToRemove}){
-  const cart = await this.getCart();
-  const lineItem = cart.lineItems.find( lineItem => {
-    return lineItem.productId === product.id; 
-  });
-  lineItem.quantity = lineItem.quantity - quantityToRemove;
-  if(lineItem.quantity > 0){
-    await lineItem.save();
-  }
-  else {
-    await lineItem.destroy();
-  }
-  return this.getCart();
-};
-
 
 User.addHook('beforeSave', async(user)=> {
   if(user.changed('password')){
@@ -122,7 +40,7 @@ User.addHook('beforeSave', async(user)=> {
 
 User.findByToken = async function(token){
   try {
-    const { id } = jwt.verify(token, process.env.JWT);
+    const { id } = jwt.verify(token, JWT);
     const user = await this.findByPk(id);
     if(user){
       return user;
