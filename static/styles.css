@@ -15,6 +15,18 @@ body {
   border-radius: 1rem;
   box-shadow: 4px 4px 1rem #DAF0EE;
 }
+#placesPage{ 
+  font-size: 2rem;
+  margin: auto;
+  padding: 1rem;
+  width: 95%;
+  text-align: center;
+  border: 2px solid #DAF0EE;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 1rem #DAF0EE;
+}
+
+
 
 form {
   /* font-size: inherit; */
@@ -26,11 +38,6 @@ form > * {
   margin: 1rem;
   /* font-size: inherit; */
 
-}
-
-nav {
-  display: flex;
-  justify-content: space-around;
 }
 
 #welcomePage{

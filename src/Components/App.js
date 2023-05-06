@@ -23,12 +23,11 @@ const App = ()=> {
       }
       {
         !!auth.id  && (
-          <div>
-            <nav>
+          <div id="placesPage">
             {
-              auth.id ? <Places /> : <Login />
+              (auth.id) ? <Places />:''
             }
-            </nav>
+
           </div>
         )
       }

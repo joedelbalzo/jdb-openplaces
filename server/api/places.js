@@ -7,6 +7,7 @@ const Place = require('../db/Place')
 //prefix is /api/places
 app.get('/', async(req,res,next) =>{
   try{
+    
     res.send(await Place.findAll())
   }
   catch(err){

@@ -1,6 +1,5 @@
 // react imports
 import React, { useState } from 'react';
-import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom'
 // mui imports
@@ -9,6 +8,7 @@ import { Button, TextField } from '@mui/material';
 //component imports
 
 //store imports
+import { attemptLogin } from '../store';
 
 const Login = ()=> {
   const dispatch = useDispatch();

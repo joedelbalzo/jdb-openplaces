@@ -10,14 +10,12 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Grid from '@mui/system/Unstable_Grid/Grid';
 
 //component imports
 
@@ -43,9 +41,10 @@ const Places = ()=> {
   const dispatch = useDispatch();
 
   const [expanded, setExpanded] = React.useState(false);
+  const [expandedId, setExpandedId] = React.useState(-1);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleExpandClick = i => {
+    setExpandedId(expandedId === i ? -1 : i);
   };
   
   useEffect(()=> {
@@ -65,6 +64,23 @@ const Places = ()=> {
 
   // form "umbrella categories, would probably have to sort within the placeCategories function first, like if umbrellaCategory.includes(category){push to umbrella category"
 
+
+  const [center, setCenter] = useState(null);
+  const [mapRadius, setMapRadius] = useState('')
+
+  useEffect(() => {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    setCenter({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    });
+  });
+  }, []);
+
+  console.log(center)
+
+
+
   return (   
     <>
     <div> 
@@ -74,8 +90,17 @@ const Places = ()=> {
          {category}
         </div>
         <div>
-          {places.map( place => { return (
-            <Card sx={{ width: 350 }}>
+          {places
+          .filter(place => place.category === category)          
+          .map( (place, i) => { return (
+            <Card 
+            sx={{ 
+              width: '75%',
+              marginTop: '1rem',
+              mx: 'auto',
+              borderBotton: "2px solid #DAF0EE"
+
+               }}>
                   <CardHeader
                     action={
                       <IconButton aria-label="settings">
@@ -84,12 +109,12 @@ const Places = ()=> {
                     title={place.name}
                   />
                   <CardMedia
-                    component="image"
+                    component={"image"}
                     //an image would go here
                   />
                   <CardContent>
                     <Typography variant="body2" color="text.secondary">
-                      {place.description}
+                      OPEN NOW!
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
@@ -101,28 +126,49 @@ const Places = ()=> {
                     </IconButton>
                     <ExpandMore
                       expand={expanded}
-                      onClick={handleExpandClick}
-                      aria-expanded={expanded}
+                      onClick={() => handleExpandClick(i)}
+                      aria-expanded={expandedId === i}
                       aria-label="show more"
                     >
                       <ExpandMoreIcon />
                     </ExpandMore>
                   </CardActions>
-                  <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                      <Typography paragraph>Method:</Typography>
-                      <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                        aside for 10 minutes.
+                  <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
+                    <Grid 
+                    container 
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="flex-start"
+                    textAlign="left"
+                    rowSpacing={1} 
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                      <Typography item paragraph>
+                        <item>
+                        Address: 
+                        <li style={{listStyleType:"none"}}>{place.address}</li>
+                        <li style={{listStyleType:"none"}}>{place.city}, {place.state}</li>
+                        <li style={{listStyleType:"none"}}>{place.zip}</li>
+                        </item>
                       </Typography>
-                      
-                    </CardContent>
+                      <Typography item paragraph>
+                      <item>
+                        Open:
+                        {place.openDays.map((day) => 
+                          {return (
+                            <li>{day} from {place.openingHour}am to {place.closingHour-12}pm</li>
+                          )}
+                        )}
+                        </item>
+                        
+                      </Typography>
+                    </Grid>
                   </Collapse>
                 </Card>
                 )
               }
-            )
-          }
+              )
+            }
+            <br/>
         </div>
       </div>
       ) 

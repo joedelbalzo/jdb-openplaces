@@ -12,7 +12,6 @@ const places = (state = [], action)=> {
 export const fetchPlaces = ()=> {
   return async(dispatch)=> {
     const response = await axios.get('/api/places');
-    console.log('RESPONSE', response)
     dispatch({type: 'SET_PLACES', places: response.data})
   };
 };
