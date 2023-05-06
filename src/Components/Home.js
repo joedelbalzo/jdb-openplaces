@@ -6,12 +6,9 @@ const Home = ()=> {
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
   return (
-    <div>
-      <h1>Home</h1>
-      <div>
-        Welcome { auth.username }!!
-        <button onClick={()=> dispatch(logout())}>Logout</button>
-      </div>
+    <div id= 'welcomePage'>
+      { auth.username }, (x) places open now.<br/>
+      (x) more within 30 minutes.
     </div>
   );
 };

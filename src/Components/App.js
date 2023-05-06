@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import Home from './Home';
+import HomeNav from './HomeNav'
 import Login from './Login';
+import Places from './Places';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginWithToken } from '../store';
+import { fetchPlaces, loginWithToken } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
 
 
 const App = ()=> {
-  const { auth } = useSelector(state => state);
+  const { auth, places } = useSelector(state => state);
   const dispatch = useDispatch();
   useEffect(()=> {
     dispatch(loginWithToken());
@@ -15,7 +17,7 @@ const App = ()=> {
 
   return (
     <div>
-      <h1>FS App Template</h1>
+      <HomeNav/>
       {
         auth.id ? <Home /> : <Login />
       }
@@ -23,7 +25,9 @@ const App = ()=> {
         !!auth.id  && (
           <div>
             <nav>
-              <Link to='/'>Home</Link>
+            {
+              auth.id ? <Places /> : <Login />
+            }
             </nav>
           </div>
         )

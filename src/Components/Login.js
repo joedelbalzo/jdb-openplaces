@@ -1,6 +1,14 @@
+// react imports
 import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom'
+// mui imports
+import { Button, TextField } from '@mui/material';
+
+//component imports
+
+//store imports
 
 const Login = ()=> {
   const dispatch = useDispatch();
@@ -18,22 +26,52 @@ const Login = ()=> {
     dispatch(attemptLogin(credentials));
   };
   return (
-    <div>
+    <div id="loginPage">
       <h2>Login</h2>
       <form onSubmit={ login }>
-        <input
-          placeholder='username'
-          value = { credentials.username }
+
+        <TextField 
+          sx={{fontSize: 20}}
+          label="username" 
           name = 'username'
-          onChange = { onChange }
-          />
-        <input
-          placeholder='password'
+          autoComplete = "username"
+          variant="outlined" 
+          size="medium"
+          value={ credentials.username } 
+          onChange={ onChange }/>
+      
+          <TextField 
+          id="filled-password-input"
+          autoComplete='current-password'
+          label="password" 
           name = 'password'
-          value={ credentials.password }
-          onChange = { onChange }
-        />
-        <button>Login</button>
+          type="password"
+          variant="outlined" 
+          value={ credentials.password } 
+          onChange={ onChange }/>
+              
+        <Button 
+        type="submit"
+        onClick={ login } 
+        style={{fontSize: "1.2rem"}}> 
+        Login
+        </Button>
+
+        <Button 
+          type="submit" 
+          style={{fontSize: "1.2rem"}}> 
+            <a href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`} style={{ textDecoration: 'none'  }}>
+            Login with Google (doesn't work yet...)
+            </a>
+        </Button>
+
+        <Button 
+          type="submit" 
+          style={{fontSize: "1.2rem"}}> 
+            <a href={`https://github.com/login/oauth/authorize?client_id=${window.client_id}`} style={{ textDecoration: 'none'  }}>
+            Login with Github
+            </a>
+        </Button>
       </form>
     </div>
   );
