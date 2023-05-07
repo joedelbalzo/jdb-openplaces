@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const nearbyPlaces = (state = [], action)=> {
   if(action.type === 'SET_NEARBYPLACES'){
+    console.log(action.places)
     return action.places
   }
   return state

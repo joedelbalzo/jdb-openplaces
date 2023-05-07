@@ -32,6 +32,8 @@ const Place = conn.define('place', {
   },
   openDays:{
     type: ARRAY( STRING ),
+    allowNull: false,
+    defaultValue: ['Temporarily Closed']
   },
   openingHour: {
     type: INTEGER,  

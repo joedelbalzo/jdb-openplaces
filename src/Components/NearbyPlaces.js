@@ -97,6 +97,8 @@ const NearbyPlaces = ()=> {
  "florist", "furniture_store", "gas_station", "gym", "hair_care", "hardware_store", "home_goods_store", "hospital", "laundry", "lawyer", "library", "liquor_store", "lodging", "meal_delivery", "meal_takeaway", "mosque", "movie_rental", "movie_theater", "museum", "park", "parking", "pet_store", "pharmacy", "primary_school", "restaurant", "school", "shoe_store", "shopping_mall", "spa", "stadium", "store", "supermarket", "tourist_attraction", "train_station", "transit_station", "university", "zoo"];
   
   if(nearbyPlaces){console.log('HEY WE WIN', nearbyPlaces)}
+  const nearPlaces = nearbyPlaces.map(place => place)
+  console.log('NEAR PLACES', nearPlaces)
 
   return (   
     <>
@@ -127,7 +129,7 @@ const NearbyPlaces = ()=> {
         </div>
         <div>
           {/* {nearbyPlaces.status === 'ZERO-RESULTS' ? 'No results are open in your radius' : ( */}
-          {nearbyPlaces
+          {nearPlaces
             // .filter(place => place.types.includes(category))          
             .map( (place, i) => { return ( 
               <div>

@@ -1,7 +1,8 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, TEXT, BOOLEAN } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, ARRAY } = conn.Sequelize;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { DECIMAL } = require('sequelize');
 const JWT = process.env.JWT || "shhhhhh1234";
 
 
@@ -30,6 +31,39 @@ const User = conn.define('user', {
     type: BOOLEAN,
     defaultValue: false
   },
+  settingRadius:{
+    type: INTEGER,
+    allowNull: false,
+    defaultValue: 500,
+     validate :{
+        min: 100
+     }
+  },
+  settingRadius:{
+    type: INTEGER,
+    allowNull: false,
+    defaultValue: 500,
+     validate :{
+        min: 100,
+        max: 5000
+     }
+  },
+  settingFavCategories:{
+    type: ARRAY ( STRING ),
+    allowNull: false,
+    defaultValue: ['cafe'],
+  },
+  settingHomeLat:{
+    type: DECIMAL,
+    allowNull: true,
+    defaultValue: 38.8982,
+  },
+  settingHomeLng:{
+    type: DECIMAL,
+    allowNull: true,
+    defaultValue: -77.0209,
+  },
+
 });
 
 User.addHook('beforeSave', async(user)=> {

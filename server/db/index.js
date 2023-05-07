@@ -5,11 +5,43 @@ const Place = require('./Place');
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
   const [moe, lucy, larry, ethyl, admin] = await Promise.all([
-    User.create({ username: 'moe', password: '123'}),
-    User.create({ username: 'lucy', password: '123' }),
-    User.create({ username: 'larry', password: '123' }),
-    User.create({ username: 'ethyl', password: '123' }),
-    User.create({ username: 'admin', password: '123', isAdmin: true }),
+    User.create({ 
+      username: 'moe', 
+      password: '123',
+      settingRadius: 500,
+      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery', 'stadium'], 
+      settingHomeLat: 40.776230,
+      settingHomeLng: -73.910634
+    }),
+    User.create({ 
+      username: 'lucy', 
+      password: '123',
+      settingRadius: 1000,
+      settingFavCategories: ['cafe', 'restaurant', 'school', 'library', 'bakery', 'bowling_alley'],
+      settingHomeLat: 38.538460,
+      settingHomeLng: -75.061661
+     }),
+    User.create({ 
+      username: 'larry', 
+      password: '123',
+      settingRadius: 200,
+      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery'],
+     }),
+    User.create({ 
+      username: 'ethyl', 
+      password: '123',
+      settingRadius: 2000,
+      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery', 'church', 'gym', 'pharmacy', 'store', 'supermarket', 'laundry', 'lawyer'],
+      settingHomeLat: 40.768044, 
+      settingHomeLng: -73.982372
+     }),
+    User.create({ 
+      username: 'admin', 
+      password: '123',
+      isAdmin: true,
+      settingRadius: 200,
+      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery'],
+    }),
 
   ]);
 
@@ -21,7 +53,7 @@ const syncAndSeed = async()=> {
       city: 'Queens', 
       state: 'NY', 
       zip: 11105,
-      openDays: ['Sun','M','T','W','Th','F','Sat'],
+      openDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
       openingHour: 7, 
       closingHour: 18, 
       googRating: 4.3,
@@ -36,7 +68,7 @@ const syncAndSeed = async()=> {
       city: 'Queens', 
       state: 'NY', 
       zip: 11105,
-      openDays: ['Sun','M','T','W','Th','F','Sat'],
+      openDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
       openingHour: 9, 
       closingHour: 1, 
       googRating: 4.5,
@@ -51,7 +83,7 @@ const syncAndSeed = async()=> {
       city: 'Queens', 
       state: 'NY', 
       zip: 11105,
-      openDays: ['Sun','M','T','W','Th','F','Sat'],
+      openDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
       openingHour: 9, 
       closingHour: 19, 
       googRating: 4,
