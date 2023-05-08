@@ -26,7 +26,23 @@ body {
   box-shadow: 4px 4px 1rem #DAF0EE;
 }
 
+#categoryContainer{
+  font-size: 2rem;
+  box-sizing: content-box;
+  width: 550px;
+  margin: 2rem auto;
+  padding: 0 3rem;
+  text-align: center;
+  border: 2px solid #DAF0EE;
+  border-radius: 1rem;
+  box-shadow: 2px 2px .5rem #DAF0EE;
+}
 
+#opensSoon{
+  font-size: 1.2rem;
+  color: red;
+  font-style: italic;
+}
 
 form {
   /* font-size: inherit; */

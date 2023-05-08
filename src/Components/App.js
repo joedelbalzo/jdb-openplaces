@@ -19,19 +19,11 @@ const App = ()=> {
   return (
     <div>
       <HomeNav/>
-      {
-        auth.id ? <Home /> : <Login />
-      }
-      {
-        !!auth.id  && (
-          <div id="placesPage">
-            {
-              (auth.id) ? <NearbyPlaces />:''
-            }
-
-          </div>
-        )
-      }
+      <div id="placesPage">
+        {
+          (auth.id) ? <NearbyPlaces />:  <Login />
+        }
+      </div>
     </div>
   );
 };

@@ -9,6 +9,7 @@ module.exports = {
         options: {
           presets: ['@babel/preset-react']
         }
+        
       }
     ]
   }
