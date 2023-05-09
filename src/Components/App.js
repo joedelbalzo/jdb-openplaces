@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import Home from './Home';
+import Settings from './Settings';
 import HomeNav from './HomeNav'
 import Login from './Login';
-import Places from './Places';
 import NearbyPlaces from './NearbyPlaces'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaces, loginWithToken } from '../store';
@@ -20,10 +19,14 @@ const App = ()=> {
     <div>
       <HomeNav/>
       <div id="placesPage">
+        
         {
-          (auth.id) ? <NearbyPlaces />:  <Login />
+          (!auth.id) ? <NearbyPlaces /> :  <Login />
         }
       </div>
+        <Routes>
+          <Route path='/settings' element={<Settings/>}/>
+        </Routes>
     </div>
   );
 };

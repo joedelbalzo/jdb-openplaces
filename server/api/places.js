@@ -19,70 +19,55 @@ app.get('/', async(req,res,next) =>{
 })
 
 app.get('/nearby', async(req, res, next) => {
-  const { lat, lng, radius, type } = req.query;
-  const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
-    try {
-      const response = await axios.get(url);
-      const places = response.data.results;
-      // Fetch photos and opening hours for each place
-      const placesDetails = await Promise.all(places.map(async (place) => {
-        const placeDetails = await fetchPlaceDetails(place.place_id, apiKey);
-        return {
-          ...place,
-          ...placeDetails
-        };
-      }));
-      // console.log('PLACES DETAILS', placesDetails)
-      res.send(placesDetails)
-      
-
-    async function fetchPlaceDetails(placeId, apiKey) {
-    const url = 'https://maps.googleapis.com/maps/api/place/details/json';
-    const params = {
-      place_id: placeId,
-      fields: 'name,photo,opening_hours',
-      key: apiKey
-    };
-    try {
-      const response = await axios.get(url, { params });
-      const result = response.data.result;
-      const photos = result.photos ? result.photos.map(photo => ("https://maps.googleapis.com/maps/api/place/photo" +
-                "?maxwidth=400" +
-                "&photoreference=" + photo.photo_reference +
-                `&key=${apiKey}`)) : [];
-      const openingHours = result.opening_hours ? result.opening_hours : [];
-      return {
-        photos,
-        openingHours
-      };
-    } catch (error) {
-      console.error(error);
-    }
-  }
-} catch (error) {
-  console.error(error);
-}
-})
-  
-
-
-
+  res.send(await Place.findAll())
+//   const { lat, lng, radius, type } = req.query;
+//   const fields = 'geometry, name,formatted_address,rating,photo,opening_hours, types'
+//   const minReviews = 50;
+//   const minRating = 2;
+//   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&type=${fields}&key=${apiKey}`;
 
 //   try {
-//     const { lat, lng, radius, type } = req.query;
-//     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
 //     const response = await axios.get(url);
-//     const placePhoto = response.data.results.forEach(place => {
-//         return "https://maps.googleapis.com/maps/api/place/photo" +
-//           "?maxwidth=400" +
-//           "&photoreference=" + place.photos[0].photo_reference +
-//           `&key=${apiKey}`;
-//       })
-//     res.send(response.data);
+//     const places = response.data.results.filter(place => {
+//       // Filter out places with less than 50 user reviews or a rating lower than 2 out of 5
+//       return place.user_ratings_total >= minReviews && place.rating >= minRating;
+//     });
+//     // Fetch photos and opening hours for each place
+//     const placesDetails = await Promise.all(places.map(async (place) => {
+//       const placeDetails = await fetchPlaceDetails(place.place_id, apiKey);
+//       return {
+//         name: place.name,
+//         address: place.formatted_address,
+//         rating: place.rating,
+//         photo: placeDetails.photo,
+//         opening_hours: {
+//           weekday_text: placeDetails.opening_hours.weekday_text,
+//           periods: placeDetails.opening_hours.periods
+//         },
+//        types: placeDetails.types
+
+//       };
+//     }));
+//     console.log(places)
+//     res.send(placesDetails)
 //   } catch (error) {
 //     console.error(error);
-//     res.status(500).send('Error fetching nearby places');
 //   }
-// });
+
+//   async function fetchPlaceDetails(placeId, apiKey) {
+//     const fields = 'photo,opening_hours, types';
+//     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=${fields}&key=${apiKey}`;
+//     try {
+//       const response = await axios.get(url);
+//       const result = response.data.result;
+//       const photo = result.photos ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${result.photos[0].photo_reference}&key=${apiKey}` : '';
+//       const opening_hours = result.opening_hours ? result.opening_hours : [];
+//        const types = result.types ? result.types : [];
+//       return { photo, opening_hours };
+//     } catch (error) {
+//       console.error(error);
+//     }
+  // }
+});
 
 module.exports = app

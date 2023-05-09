@@ -31,9 +31,11 @@ Immediately, the app says:
     --when you click on a place, more details pop down. maybe a notes feature? (no shade, bring sunscreen, bring the big stroller or don't bring a stroller)
 
 to do:
+how to get MORE THINGSSSSSSSS
 buttons for sorting? maybe get rid of the categorical breakdown. have the default be by distance?
 what else should be in the drop down? i'd mentioned maybe a notes section. i don't think a user actually needs any reason to fully click on a card. maybe embed a form?
 oh -- on that note, RATING IT! a user's rating!
+maybe look into the distance api for actual distance?
 make sure i'm actually getting all of the results. checking pagination? check other logged in users
 build a settings page, figure out how to get the authentication working for seeded users
 then....oauth.

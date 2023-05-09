@@ -137,18 +137,18 @@ export default function HomeNav() {
             </Menu>
           </Box>
 
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1, justifyContent:'space-around', fontSize: '4rem' }}>
             Open Places
           </Typography>    
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+            /> */}
+          {/* </Search> */}
           {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem"}} onClick={()=> dispatch(logout())}>Logout</Button> : <Button color="inherit" sx={{fontSize: "1.5rem"}}>Login</Button>}
           
 

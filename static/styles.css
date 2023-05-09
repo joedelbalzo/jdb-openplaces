@@ -2,7 +2,8 @@ body {
   margin: 0;
   font-family: verdana;
   font-size: 2rem;
-  color: rgb(0, 30, 17)
+  color: rgb(0, 30, 17);
+  background-color: #fbfdfd
 }
 
 #loginPage{ 
@@ -21,21 +22,36 @@ body {
   padding: 1rem;
   width: 95%;
   text-align: center;
-  border: 2px solid #DAF0EE;
+  /* border: 2px solid #DAF0EE; */
   border-radius: 1rem;
-  box-shadow: 4px 4px 1rem #DAF0EE;
+  /* box-shadow: 4px 4px 1rem #DAF0EE; */
 }
 
 #categoryContainer{
-  font-size: 2rem;
+  font-size: 4rem;
   box-sizing: content-box;
-  width: 550px;
-  margin: 2rem auto;
-  padding: 0 3rem;
+  width: 95%;
+  margin: 4rem auto;
+  padding: 0;
   text-align: center;
-  border: 2px solid #DAF0EE;
+  border-bottom: 2px solid #DAF0EE;
   border-radius: 1rem;
   box-shadow: 2px 2px .5rem #DAF0EE;
+ 
+}
+
+#categoryHeader{
+  font-variant: small-caps;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 1rem 0 1rem 3rem;
+  color:#fbfdfd;
+  text-align: left;
+  margin-bottom: 2rem;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  background: dodgerblue;
+  width: 100%;
 }
 
 #opensSoon{

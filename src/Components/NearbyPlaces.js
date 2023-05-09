@@ -29,6 +29,7 @@ import Select from '@mui/material/Select';
 
 //store imports
 import { fetchNearbyPlaces } from '../store';
+import { fontWeight } from '@mui/system';
 
 
 
@@ -50,23 +51,39 @@ const NearbyPlaces = ()=> {
   const [center, setCenter] = useState(null);
   const [mapRadius, setMapRadius] = useState('')
   const [category, setCategory] = useState('')
+  const [currentCoords, setCurrentCoords]=useState(null)
+  const [previousCoords, setPreviousCoords] = useState(null);
+  const [previousFetchTime, setPreviousFetchTime] = useState(0);
 
-
+  
 
   useEffect(() => {
-  // navigator.geolocation.getCurrentPosition(function (position) {
-  //   setCenter({
-  //     lat: position.coords.latitude,
-  //     lng: position.coords.longitude,
-  //   });
-  // });
-  let lat = auth.settingHomeLat
-  let lng = auth.settingHomeLng
-  let radius = auth.settingRadius
-  let type = auth.settingFavCategories
-  dispatch(fetchNearbyPlaces({lat, lng, type, radius}))
+    const { settingHomeLat, settingHomeLng, settingRadius, settingFavCategories } = auth;
+    let { lat, lng } = currentCoords || { lat: settingHomeLat, lng: settingHomeLng };
+    let radius = auth.settingRadius
+    let type = auth.settingFavCategories
+    dispatch(fetchNearbyPlaces({lat, lng, radius, type}))
+    setPreviousCoords(currentCoords);
+    setPreviousFetchTime(Date.now());
 
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const lat = position.coords.latitude
+      const lng = position.coords.longitude
+        console.log('actual', lat, 'actual', lng)
+    })
+
+    const distanceInMeters = previousCoords ? getDistanceFromLatLonInMeters(previousCoords.lat, previousCoords.lng, lat, lng) : '';
+    const timeElapsed = previousFetchTime ? Date.now() - previousFetchTime : '';
+    if (distanceInMeters > 800 || timeElapsed > 80000) {
+      setCurrentCoords({ lat, lng });
+    }
   }, []);
+
+  function getDistanceFromLatLonInMeters(lat1, lon1, lat2, lon2) {
+    let R = 6371; // Radius of the earth in km
+    let dLat = deg2rad(lat2-lat1); // deg2rad below
+    let dLon = deg2rad(lon2-lon1);
+  }
 
   const [expanded, setExpanded] = React.useState(false);
   const [expandedId, setExpandedId] = React.useState(-1);
@@ -92,9 +109,8 @@ const NearbyPlaces = ()=> {
     const currentTime = new Date();
     const hours = currentTime.getHours()
     const minutes = currentTime.getMinutes()
-    return (parseFloat(`${hours < 10 ? '0' + hours : hours}${minutes < 10 ? '0' + minutes : minutes}`));
+    return (parseInt(`${hours < 10 ? '0' + hours : hours}${minutes < 10 ? '0' + minutes : minutes}`));
   }
-
   const googleTimePlus =(timeAdded) => {
   const currentTime = new Date();
   const newTime = new Date(currentTime.getTime() + timeAdded * 60000);
@@ -105,12 +121,26 @@ const NearbyPlaces = ()=> {
 
   const openNow = () => {
     const placesWithHours = nearbyPlaces.filter(place => place.opening_hours)
-    return placesWithHours.filter(place => place.opening_hours.open_now === true)
+    const today = googleDate()
+    const time = googleTime()
+    const placesOpenNow = []
+    for (let place of placesWithHours){
+      for (let hours of place.opening_hours){
+        if (hours.open.day === today && time > hours.open.time){
+          placesOpenNow.push(place)
+        }
+        if (hours.open.day === today && time < hours.close.time){
+          placesOpenNow.push(place)
+        }
+      }
     }
+    return placesOpenNow
+  }
+
 
   const openSoon = (time) => {
     const placesWithHours = nearbyPlaces.filter(place => place.opening_hours)
-    const placesWithHoursButClosed = placesWithHours.filter (place => place.opening_hours.open_now === false)
+    const placesWithHoursButClosed =  placesWithHours.filter (place => place.opening_hours.open_now === false)
     const idx = googleDate()
     const openSoonPlaces = []
     for (let place of placesWithHoursButClosed){
@@ -120,19 +150,25 @@ const NearbyPlaces = ()=> {
     return openSoonPlaces
   }
 
-  const closingSoon = (time) => {
+  const closingSoon = (timeQueried) => {
     const placesWithHours = nearbyPlaces.filter(place => place.opening_hours)
     const placesWithHoursButOpen = placesWithHours.filter (place => place.opening_hours.open_now === true)
     const idx = googleDate()
     const closingSoonPlaces = []
     for (let place of placesWithHoursButOpen){
-    if((idx +1)!==(place.openingHours.periods[idx].close.day) && googleTimePlus(time) >= place.openingHours.periods[idx].close.time){
-      closingSoonPlaces.push(place)
-    }}
-    console.log(closingSoonPlaces)
+      if(place.openingHours.periods[idx]) {
+        let closingTime = place.openingHours.periods[idx].close.time*1
+        if (closingTime < 600){ 
+          closingTime = closingTime + 2400
+        }
+        if (closingTime - googleTime() < timeQueried){
+          closingSoonPlaces.push(place)
+        }
+      } 
+    }
     return closingSoonPlaces
   }
-  
+
   const closedNow = () => {
     const placesWithHours = nearbyPlaces.filter(place => place.opening_hours)
     return placesWithHours.filter(place => place.opening_hours.open_now === false)
@@ -151,7 +187,6 @@ const NearbyPlaces = ()=> {
       if(distance < .1){return 'Less than 0.1 miles away!'}
       return `${Math.floor(Math.round(distance*10))/10} miles away`;
     }
-    
     function degToRad(degrees) {
       return degrees * (Math.PI/180);
     }
@@ -161,32 +196,36 @@ const NearbyPlaces = ()=> {
     <div> 
 
     <div id= 'welcomePage'>
+      {/* {console.log(googleTime())}
       { auth.username }, {openNow().length} places are open now.<br/>
       {openSoon(30).length === 0 ? '': `${openSoon(30).length} more within 30 minutes.`}<br/>
-      {closingSoon(60).length === 0 ? '' : `${closingSoon(60).length} will close within an hour.`}<br/>
+      {closingSoon(60).length === 0 ? '' : `${closingSoon(60).length} will close within an hour.`}<br/> */}
       
     </div>
     {/* maybe some buttons for sort by category, distance, rating? */}
     
     {auth.settingFavCategories.map( category => { return (
       <div id="categoryContainer">
-        <div>
-         {category}
+        <div id ="categoryHeader">
+         {category.split('_').join(' ')}
         </div>
         <div>
-          {nearbyPlaces
-            .filter(place => place.types.includes(category))          
+          {[...openNow(), ...openSoon()]
+            // .filter(place => place.types.includes(category))          
             .map( (place, i) => { return ( 
               <div>
                 {openSoon(place)}
             <Card 
+            // key={place.placeId}
             sx={{ 
-              maxWidth: '500px',
-              // width: '75%',
+              maxWidth: '700px',
+              width: '90%',
               marginTop: '1rem',
               mx: 'auto',
-              borderBotton: "2px solid #DAF0EE"
+              // borderTop: 1,
+              borderBottom: 1
 
+              
                }}>
                   <CardHeader
                     action={
@@ -198,15 +237,15 @@ const NearbyPlaces = ()=> {
                   <CardMedia
                   component="img"
                   alt={place.name}
-                  height="300"
-                  image={place.photos[0]}
+                  height="400"
+                  image={place.photo}
                   />
                   <CardContent>
-                    { place.opening_hours.open_now === false ? <span id="opensSoon">opens soon, hang on!</span> : ''}
-
+        {/* THIS IS WRONG. GOTTA MAKE SURE THEY'RE OPENING SOON FREAL THO */}
+                    { place.opening_hours.open_now === false && openSoon().includes(place) ? <span id="opensSoon">opens soon, hang on!</span> : ''}
                     <Typography variant="body1" color="text.secondary" textAlign={'left'}>
                       Address: {place.vicinity}<br/>
-                      Distance: {getDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry.location.lat, place.geometry.location.lng)}<br/>
+                      {/* Distance: {getDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry.location.lat, place.geometry.location.lng)}<br/> */}
                       Google Rating: {place.rating} with {place.user_ratings_total} reviews.
 
 
@@ -223,7 +262,6 @@ const NearbyPlaces = ()=> {
                       expand={expanded}
                       onClick={() => handleExpandClick(i)}
                       aria-expanded={expandedId === i}
-
                       aria-label="show more"
                     >
                       <ExpandMoreIcon />
@@ -231,29 +269,29 @@ const NearbyPlaces = ()=> {
                   </CardActions>
                   <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
                     <Grid 
-                    container="true"
+                    container
                     direction="row"
                     justifyContent="space-around"
                     alignItems="flex-start"
                     textAlign="left"
                     rowSpacing={1} 
                     columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                      <Typography item paragraph>
-                        <item>
+                      <Typography paragraph>
+                        
                         Open:
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[0]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[1]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[2]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[3]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[4]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[5]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.openingHours.weekday_text[6]}</li>
-                        </item>
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[0]}</li> 
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[1]}</li> 
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[2]}</li> 
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[3]}</li> 
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[4]}</li> 
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[5]}</li> 
+                          <li style={{listStyleType:"none"}}>{place.weekday_text[6]}</li>
+                        
                       </Typography>
-                      <Typography item paragraph>
-                      <item>
+                      <Typography paragraph>
+                      
  
-                        </item>
+                        
                         
                       </Typography>
                       
