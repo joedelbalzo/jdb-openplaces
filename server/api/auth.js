@@ -35,8 +35,8 @@ app.get('/', isLoggedIn, (req, res, next)=> {
 
 app.put('/', isLoggedIn, async(req, res, next)=> {
   try {
+    // https://opencagedata.com/tutorials/geocode-in-javascript do this!
     const user = req.user;
-    //define the properties a user can change
     await user.update(req.body);
     res.send(user);
   }
@@ -44,3 +44,5 @@ app.put('/', isLoggedIn, async(req, res, next)=> {
     next(ex);
   }
 });
+
+

@@ -39,15 +39,6 @@ const User = conn.define('user', {
         min: 100
      }
   },
-  settingRadius:{
-    type: INTEGER,
-    allowNull: false,
-    defaultValue: 500,
-     validate :{
-        min: 100,
-        max: 5000
-     }
-  },
   settingFavCategories:{
     type: ARRAY ( STRING ),
     allowNull: false,

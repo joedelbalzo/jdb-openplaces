@@ -11,6 +11,9 @@ const Place = conn.define('place', {
     type: STRING,
     allowNull: false
   },
+  formatted_address: {
+   type: STRING
+  },
   opening_hours: {
     type: JSON
   },
@@ -22,6 +25,15 @@ const Place = conn.define('place', {
   },
   rating: {
     type: DECIMAL
+  },
+  types: {
+    type: ARRAY(STRING)
+  },
+  url: {
+    type: STRING
+  },
+  geometry: {
+    type: JSON
   }
 //   category: {
 //     type: STRING,

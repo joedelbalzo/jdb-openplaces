@@ -92,8 +92,15 @@ export default function HomeNav() {
   };
   
   const navigateTo = (page) => {
+    if(!page){navigate(`/`)}
     navigate(`/${page.toLowerCase()}`)
   }
+
+  const _logout = () =>{
+    dispatch(logout())
+    navigate('/')
+  }
+
   return (
     <Box sx={{ flexGrow: 1, justifyContent: "center"}}>
       <AppBar position="static" sx={{height: "10%", justifyContent: "center", backgroundColor: "#003b21" }}>
@@ -130,26 +137,28 @@ export default function HomeNav() {
               onClose={handleCloseUserMenu}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigateTo(page)}>
-                  <Typography textAlign="center" fontSize="2rem">{page}</Typography>
-                </MenuItem>
+                page !== 'Logout' ? 
+                  (<MenuItem key={page} onClick={() => navigateTo(page)}>
+                    <Typography textAlign="center" fontSize="2rem">
+                    {page}
+                    </Typography>
+                  </MenuItem> )
+              :  
+                  (<MenuItem key={page} onClick={() => _logout()}>
+                    <Typography textAlign="center" fontSize="2rem">
+                    {page}
+                    </Typography>
+                 </MenuItem>)
               ))}
             </Menu>
           </Box>
 
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1, justifyContent:'space-around', fontSize: '4rem' }}>
-            Open Places
+          <Typography variant="h4" component="div" onClick={()=>navigateTo('/')} sx={{ flexGrow: 1, justifyContent:'space-around', fontSize: '4rem', ":hover": {cursor:"pointer"}}}>
+           Open Places 
           </Typography>    
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            /> */}
-          {/* </Search> */}
-          {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem"}} onClick={()=> dispatch(logout())}>Logout</Button> : <Button color="inherit" sx={{fontSize: "1.5rem"}}>Login</Button>}
+
+          {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem"}} onClick={()=> _logout()}>Logout</Button> : 
+          <Button color="inherit" sx={{fontSize: "1.5rem"}} onClick={()=>navigateTo()}>Login</Button>}
           
 
 

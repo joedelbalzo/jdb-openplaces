@@ -11,7 +11,10 @@ const reducer = combineReducers({
   nearbyPlaces
 });
 
+
 const store = createStore(reducer, applyMiddleware(thunk, logger));
+
+console.log(reducer, store)
 
 export default store;
 

@@ -10,7 +10,7 @@ const syncAndSeed = async()=> {
       username: 'moe', 
       password: '123',
       settingRadius: 500,
-      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery', 'stadium'], 
+      settingFavCategories: ['cafe'], 
       settingHomeLat: 40.776230,
       settingHomeLng: -73.910634
     }),
@@ -18,7 +18,7 @@ const syncAndSeed = async()=> {
       username: 'lucy', 
       password: '123',
       settingRadius: 1000,
-      settingFavCategories: ['cafe', 'restaurant', 'school', 'library', 'bakery', 'bowling_alley'],
+      settingFavCategories: ['school'],
       settingHomeLat: 38.538460,
       settingHomeLng: -75.061661
      }),
@@ -26,13 +26,13 @@ const syncAndSeed = async()=> {
       username: 'larry', 
       password: '123',
       settingRadius: 200,
-      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery'],
+      settingFavCategories: ['restaurant', 'museum'],
      }),
     User.create({ 
       username: 'ethyl', 
       password: '123',
       settingRadius: 2000,
-      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery', 'church', 'gym', 'pharmacy', 'store', 'supermarket', 'laundry', 'lawyer'],
+      settingFavCategories: ['gym', 'store', 'supermarket'],
       settingHomeLat: 40.768044, 
       settingHomeLng: -73.982372
      }),
@@ -41,80 +41,22 @@ const syncAndSeed = async()=> {
       password: '123',
       isAdmin: true,
       settingRadius: 200,
-      settingFavCategories: ['cafe', 'restaurant', 'museum', 'library', 'bakery'],
+      settingFavCategories: [],
     }),
 
   ]);
 
-  const [tastys, trattoria, taverna, marthas, sandros, starbucks, library] = await Promise.all(fakeData.map(async(place) => {await Place.create({
+  const [tastys, trattoria, taverna, marthas, sandros, starbucks, library, burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone] = await Promise.all(fakeData.map(async(place) => {await Place.create({
       name: place.name,
       opening_hours: place.opening_hours,
+      formatted_address: place.formatted_address,
       weekday_text: place.weekday_text,
       photo: place.photo,
-      rating: place.rating
+      rating: place.rating,
+      types: place.types,
+      url: place.url,
+      geometry: place.geometry
     })}))
-  //   Place.create({ 
-  //     name: 'Kinship', 
-  //     category: 'cafe', 
-  //     address: '23-92 21st St.', 
-  //     city: 'Queens', 
-  //     state: 'NY', 
-  //     zip: 11105,
-  //     openDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-  //     openingHour: 7, 
-  //     closingHour: 18, 
-  //     googRating: 4.3,
-  //     yourRating: 9, 
-  //     favorite: true, 
-  //     notes: 'weird seating choices'
-  //   }),
-  //   Place.create({ 
-  //     name: 'Queens Room', 
-  //     category: 'restaurant', 
-  //     address: '36-02 Ditmars Blvd.', 
-  //     city: 'Queens', 
-  //     state: 'NY', 
-  //     zip: 11105,
-  //     openDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-  //     openingHour: 9, 
-  //     closingHour: 1, 
-  //     googRating: 4.5,
-  //     yourRating: 7, 
-  //     favorite: true, 
-  //     notes: 'coffee is hit or miss'
-  //   }),
-  //   Place.create({ 
-  //     name: 'Dough', 
-  //     category: 'cafe', 
-  //     address: '21-70 31st St.', 
-  //     city: 'Queens', 
-  //     state: 'NY', 
-  //     zip: 11105,
-  //     openDays: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-  //     openingHour: 9, 
-  //     closingHour: 19, 
-  //     googRating: 4,
-  //     yourRating: 7, 
-  //     favorite: true, 
-  //     notes: 'coffee is bad, no inside seating'
-  //   }),
-  //   Place.create({ 
-  //     name: 'Steinway Library', 
-  //     category: 'library', 
-  //     address: '21-70 31st St.', 
-  //     city: 'Queens', 
-  //     state: 'NY', 
-  //     zip: 11105,
-  //     openDays: [],
-  //     openingHour: 10, 
-  //     closingHour: 18, 
-  //     googRating: 3.8,
-  //     yourRating: 6, 
-  //     favorite: true, 
-  //     notes: 'great childrens floor'
-  //   }),
-  // ]);
-
   return {
     users: {
       moe,
@@ -124,7 +66,7 @@ const syncAndSeed = async()=> {
       admin
     },
     places: {
-      tastys, trattoria, taverna, marthas, sandros, starbucks, library
+      tastys, trattoria, taverna, marthas, sandros, starbucks, library,burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone
     }
   };
 };

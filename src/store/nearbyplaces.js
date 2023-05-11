@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 const nearbyPlaces = (state = [], action)=> {
   if(action.type === 'SET_NEARBYPLACES'){
-    console.log(action.places)
+
+    console.log('from the store', action.places)
     return action.places
   }
   return state
@@ -13,6 +14,7 @@ const nearbyPlaces = (state = [], action)=> {
 export const fetchNearbyPlaces = (search)=> {
   return async(dispatch)=> {
     const {lat, lng, radius, type} = search
+    console.log('store 1')
     const response = await axios.get('/api/places/nearby', {
       params: {lat: lat, lng: lng, radius: radius, type: type}
   });
@@ -20,5 +22,6 @@ export const fetchNearbyPlaces = (search)=> {
       dispatch({type: 'SET_NEARBYPLACES', places: response.data})
   };
 };
+
 
 export default nearbyPlaces
