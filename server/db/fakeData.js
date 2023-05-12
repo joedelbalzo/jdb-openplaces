@@ -19,6 +19,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipMspKv84sHdm7jSVZw_tWoLTzQN35y6eZD5RcLM=w408-h306-k-no",
   rating:4.1,
+  user_ratings_total: 2156,
   types: ['restaurant'], 
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.775145 , "lng": -73.909574}}
@@ -43,6 +44,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipMF8b8zEt6hh5qSvd3RId1OHMVorvXGkS98vMcy=w426-h240-k-no",
   rating:4.5,
+  user_ratings_total: 3256,
   types: ['restaurant'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.776422 , "lng": -73.910533}}
@@ -67,6 +69,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipMWbsP2ZVuLtIaxj6tGx_FBqQtSOEkMAAnT8dMz=w408-h306-k-no",
   rating:4.8,
+  user_ratings_total: 15256,
   types: ['restaurant'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.774342 , "lng": -73.908012}}
@@ -92,6 +95,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipOBHCzJWoa4nbUtoiqELLO8P_GoAaXvxwUmwD82=w408-h306-k-no",
   rating:4.6,
+  user_ratings_total: 8256,
   types: ['bakery', 'cafe'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.773969 , "lng": -73.907492}}
@@ -117,6 +121,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipOn9cUm5OXiBxV3dW16YFRGKxZRPwOZYc5uhyo=w408-h280-k-no",
   rating:4.2,
+  user_ratings_total: 2256,
   types: ['restaurant'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.776422 , "lng": -73.910533}}
@@ -142,6 +147,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipPM7C17Db3cx7lZIuEhd2ms4RjSq15rEu-l188b=w408-h544-k-no",
   rating:3.4,
+  user_ratings_total: 2564,
   types: ['cafe'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.775431 , "lng": -73.911896}}
@@ -168,6 +174,7 @@ const fakeData = [
                   "Sunday: 9:00 AM -- 11:00 PM"],
   photo:  "https://lh5.googleusercontent.com/p/AF1QipPhGLcc2YEMfGMtbDvnqnuXqYF9dt-d9YIBQWZ2=w426-h240-k-no",
   rating:3.4,
+  user_ratings_total: 26,
   types: ['library'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.777243 , "lng": -73.909149}}
@@ -193,6 +200,7 @@ const fakeData = [
                   "Sunday: 11:30 AM -- 11:00 PM"],
   photo:  "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating:4.9,
+  user_ratings_total: 2561,
   types: ['restaurant'],
   url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
   geometry: {'location': {"lat": 40.766404 , "lng": -73.920511}}
@@ -218,6 +226,7 @@ const fakeData = [
                   "Sunday: 07:00 AM -- 06:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating: 4.2,
+  user_ratings_total: 2576,
   types: ['cafe'],
   url: 'https://maps.app.goo.gl/1ZwvQsSPsY8a9Tks9?g_st=ip',
   geometry: {'location': {'lat': 40.778873, 'lng': -73.981029}} 
@@ -243,6 +252,7 @@ const fakeData = [
   "Sunday: 7:00 AM -- 7:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating: 4.5,
+  user_ratings_total: 256,
   types: ['cafe'],
   url: 'https://maps.app.goo.gl/QSvATPViMJm8mXty9?g_st=ip',
   geometry: {'location': {"lat": 40.773322 , "lng": -73.957374}}
@@ -268,6 +278,7 @@ const fakeData = [
     "Sunday: 7:00 AM -- 6:00 PM"],
     photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
     rating:4.2,
+    user_ratings_total: 256,
     types: ['cafe'],
     url: 'https://maps.app.goo.gl/1TQLT6fM8dd6UcKP6?g_st=ip',
     geometry: {'location': {"lat": 40.765956 , "lng": -73.922119}}
@@ -293,6 +304,7 @@ const fakeData = [
                       "Sunday: 11:00 AM -- 10:00 PM"],
       photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
       rating:4.5,
+      user_ratings_total: 256,
       types: ['restaurant'],
       url: 'https://maps.app.goo.gl/pNsLZ8mPvjENX9f29?g_st=ip',
       geometry: {'location': {"lat": 40.765678, "lng": -73.922790}}
@@ -318,6 +330,7 @@ const fakeData = [
                   "Sunday: 11:00 AM -- 9:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating: 4.7,
+  user_ratings_total: 256,
   types: ['restaurant'],
   url: 'https://maps.app.goo.gl/ysynrvJNXFwefNvJ6?g_st=ip',
   geometry: {'location': {"lat": 40.768171 , "lng": -73.919099}}
@@ -368,6 +381,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                   "Sunday: 10:00 AM -- 5:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating:4.5,
+  user_ratings_total: 256,
   types: ['museum'],
   url: 'https://maps.app.goo.gl/KDwLpUG1KZHBq9fh9?g_st=ip',
   geometry: {'location': {"lat": 40.781096 , "lng": -73.972191}}
@@ -392,6 +406,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                   "Sunday: 10:00 AM -- 7:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating: 4.5,
+  user_ratings_total: 256,
   types: ['amusement_park'],
   url: 'https://maps.app.goo.gl/5wCwBsDJJjV7scBb8',
   geometry: {'location': {"lat": 40.765206 , "lng": -73.921455}}
@@ -416,7 +431,11 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
   "Saturday: 7:00 AM -- 2:00 PM",
   "Sunday: 7:00 AM -- 2:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
-  geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
+  geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}},
+  rating: 4.5,
+  user_ratings_total: 256,
+  types: ['cafe'],
+  url: 'https://maps.app.goo.gl/5wCwBsDJJjV7scBb8',
   },
 {
   name: "Pizza Paradise",
@@ -439,6 +458,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
   "Sunday: 11:30 AM -- 7:30 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating:4.2,
+  user_ratings_total: 256,
   types: ['restaurant'],
   url: 'https://maps.app.goo.gl/N3wq5z5x5sh5pX9R9?g_st=ic',
   geometry: {'location': {"lat": 41.308274 , "lng": -72.928972}}
@@ -464,6 +484,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                     "Sunday: 8:30 AM -- 9:00 PM"],
     photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
     rating:4.7,
+    user_ratings_total: 256,
     types: ['park'],
     url: 'https://maps.app.goo.gl/Z7smuX9FT8V7GWmt5?g_st=ip',
     geometry: {'location': {"lat": 40.785091 , "lng": -73.968285}}
@@ -489,6 +510,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                     "Sunday: 6:00 AM -- 9:00 PM"],
     photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
     rating:4.5,
+    user_ratings_total: 6256,
     types: ['gym', 'health'],
     url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
     geometry: {'location': {"lat": 40.742925, "lng": -74.006798}}
@@ -514,6 +536,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     "Sunday: 12:00 PM -- 7:00 PM"],
     photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
     rating:4.2,
+    user_ratings_total: 2556,
     types: ['cafe'],
     url: 'https://example.com',
     geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
@@ -539,6 +562,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     "Sunday: 2:00 PM -- 6:00 PM"],
     photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
     rating: 4.8,
+    user_ratings_total: 256,
     types: ['beauty_salon', 'hair_care'],
     url: 'https://maps.app.goo.gl/6CjzWfJmMKh2Q6Uy6?g_st=ip',
     geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
@@ -564,6 +588,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     "Sunday: 2:00 PM -- 8:00 PM"],
     photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
     rating:4.6,
+    user_ratings_total: 256,
     types: ['museum'],
     url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
     geometry: {'location': {"lat": 38.633386 , "lng": -90.200999}}
@@ -589,6 +614,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
   "Sunday: 2:00 PM -- 8:00 PM"],
   photo: "https://images.ctfassets.net/84wm3hhxw4gx/0sxerdVddcgpnd69VcMsx/414cb6a014fc90e5d96e07fef8022ccf/foodplaceholder.png",
   rating: 4.2,
+  user_ratings_total: 256,
   types: ['restaurant'],
   url: 'https://www.example.com',
   geometry: {'location': {"lat": 40.7128 , "lng": -74.0060}}
@@ -614,6 +640,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     "Sunday: 9:00 AM -- 6:00 PM"],
     photo: "https://example.com/hair_salon.png",
     rating: 4.5,
+    user_ratings_total: 256,
     types: ['hair_care'],
     url: 'https://maps.app.goo.gl/Z7smuX9FT8V7GWmt5?g_st=ip',
     geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
@@ -639,6 +666,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
       "Sunday: 9:00 AM -- 4:00 PM"],
       photo: "https://example.com/glossylocks.jpg",
       rating:4.8,
+      user_ratings_total: 256,
       types: ['hair_care'],
       url: 'https://example.com/glossylocks',
       geometry: {'location': {"lat": 37.7749, "lng": -122.4194}}
@@ -664,10 +692,66 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
         "Sunday: 10:00 AM -- 11:00 PM"],
         photo: "https://content.thv11.com/photo/2016/04/25/ThinkstockPhotos-469948871_1461605350699_1913726_ver1.0.jpg",
         rating:4.5,
+        user_ratings_total: 256,
         types: ['bowling_alley'],
         url: 'https://example.com/strikezone',
         geometry: {'location': {"lat": 39.7392, "lng": -104.9903}}
-        }
+        },
+        {
+          name: "The Midnight Lounge",
+          formatted_address: "123 Main St, Anytown, USA",
+          opening_hours: [
+          {close: {day: 1, time: '0300'}, open: {day: 0, time: '2000'}},
+          {close: {day: 2, time: '0300'}, open: {day: 1, time: '2000'}},
+          {close: {day: 3, time: '0300'}, open: {day: 2, time: '2000'}},
+          {close: {day: 4, time: '0300'}, open: {day: 3, time: '2000'}},
+          {close: {day: 5, time: '0400'}, open: {day: 4, time: '2000'}},
+          {close: {day: 6, time: '0400'}, open: {day: 5, time: '2000'}},
+          {close: {day: 0, time: '0300'}, open: {day: 6, time: '2000'}},
+          ],
+          weekday_text: [ "Monday: 8:00 PM -- 3:00 AM",
+          "Tuesday: 8:00 PM -- 3:00 AM",
+          "Wednesday: 8:00 PM -- 3:00 AM",
+          "Thursday: 8:00 PM -- 3:00 AM",
+          "Friday: 8:00 PM -- 4:00 AM",
+          "Saturday: 8:00 PM -- 4:00 AM",
+          "Sunday: 8:00 PM -- 3:00 AM"],
+          photo: "https://example.com/bar-image.jpg",
+          rating: 4.2,
+          user_ratings_total: 123,
+          types: ['bar', 'nightlife'],
+          url: 'https://example.com/bar-page',
+          geometry: {'location': {"lat": 37.12345 , "lng": -122.45678}}
+          },
+          {
+            name: "The Night Owl",
+            formatted_address: "123 Main St, Anytown, USA",
+            opening_hours: [
+            {close: {day: 0, time: '0200'}, open: {day: 6, time: '2000'}},
+            {close: {day: 1, time: '0200'}, open: {day: 0, time: '2000'}},
+            {close: {day: 2, time: '0200'}, open: {day: 1, time: '2000'}},
+            {close: {day: 3, time: '0200'}, open: {day: 2, time: '2000'}},
+            {close: {day: 4, time: '0200'}, open: {day: 3, time: '2000'}},
+            {close: {day: 5, time: '0200'}, open: {day: 4, time: '2000'}},
+            {close: {day: 6, time: '0200'}, open: {day: 5, time: '2000'}},
+            ],
+            weekday_text: [
+            "Monday: 8:00 PM -- 2:00 AM",
+            "Tuesday: 8:00 PM -- 2:00 AM",
+            "Wednesday: 8:00 PM -- 2:00 AM",
+            "Thursday: 8:00 PM -- 2:00 AM",
+            "Friday: 8:00 PM -- 2:00 AM",
+            "Saturday: 8:00 PM -- 2:00 AM",
+            "Sunday: Closed"
+            ],
+            photo: "https://example.com/bar.jpg",
+            rating: 4.2,
+            user_ratings_total: 150,
+            types: ['bar', 'nightclub'],
+            url: 'https://example.com/bar',
+            geometry: {'location': {"lat": 37.7749, "lng": -122.4194}}
+            }
+          
       
 ]
 

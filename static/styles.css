@@ -27,6 +27,17 @@ body {
   /* box-shadow: 4px 4px 1rem #DAF0EE; */
 }
 
+#categoryButtonContainer{
+  display: flex;
+  min-width: fit-content;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 75%;
+  padding: 1rem;
+  margin: auto;
+}
+
 #categoryContainer{
   font-size: 4rem;
   box-sizing: content-box;
@@ -37,7 +48,6 @@ body {
   border-bottom: 2px solid #DAF0EE;
   border-radius: 1rem;
   box-shadow: 2px 2px .5rem #DAF0EE;
- 
 }
 
 #categoryHeader{
@@ -74,6 +84,7 @@ form > * {
 
 #welcomePage{
   text-align: center;
+  font-size: 3rem;
   margin: 1rem;
   color: rgb(0, 30, 17);
   

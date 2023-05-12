@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4, BOOLEAN, ARRAY, JSON, DECIMAL, TEXT, OBJECT } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, ARRAY, JSON, DECIMAL, TEXT,  INTEGER } = conn.Sequelize;
 
 const Place = conn.define('place', {
   id: {
@@ -34,6 +34,9 @@ const Place = conn.define('place', {
   },
   geometry: {
     type: JSON
+  },
+  user_ratings_total:{
+    type: INTEGER
   }
 //   category: {
 //     type: STRING,

@@ -10,39 +10,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from '@material-ui/core/styles';
+import {Grid} from '@mui/material';
 
 const Settings = () => {
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
-  const [settingFavCategories, setSettingFavCategories] = useState([]);
 
   if (!auth) {
     return 'wtf';
   }
 
-  const DEFAULT_FORM_INPUTS = {
-    username: '',
-    settingRadius: '',
-    settingHomeLat: '',
-    settingHomeLng: '',
-  };
-  
-  const [formInputs, setFormInputs] = useState(DEFAULT_FORM_INPUTS);
+  const [username, setUsername] = useState(auth.username);
+  const [settingRadius, setSettingRadius] = useState(auth.settingRadius);
+  const [settingHomeLat, setSettingHomeLat] = useState(auth.settingHomeLat);
+  const [settingHomeLng, setSettingHomeLng] = useState(auth.settingHomeLng);
+  const [settingFavCategories, setSettingFavCategories] = useState(auth.settingFavCategories)
+  const [checked, setChecked] = useState('');
 
-  useEffect(() => {
-    if (auth) {
-      setFormInputs({
-        username: auth.username || '',
-        settingRadius: auth.settingRadius || '',
-        settingHomeLat: auth.settingHomeLat || '',
-        settingHomeLng: auth.settingHomeLng || '',
-      });
-      setSettingFavCategories(auth.settingFavCategories || '');
-    }
-  }, [auth]);
+  // useEffect(() => {
+  //   if (auth) {
+  //   }
+  // }, [auth]);
 
-  console.log(auth)
-  console.log(formInputs)
 
   const useStyles = makeStyles({
     formControlLabel: {
@@ -51,10 +40,11 @@ const Settings = () => {
   });
   const classes = useStyles();
 
-  const handleChange = event => {
-    const idx = formattedTypes.indexOf(event.target.name);
-    const category = googleTypes[idx];
-    if (event.target.checked && settingFavCategories.length < 5) {
+  const handleChange = (ev) => {
+    // const idx = formattedTypes.indexOf(ev.target.name);
+    // console.log(idx)
+    const category = ev.target.name
+    if (ev.target.checked && settingFavCategories.length < 5) {
       setSettingFavCategories([...settingFavCategories, category]);
     } else {
       setSettingFavCategories(
@@ -63,84 +53,111 @@ const Settings = () => {
     }
   };
 
-  const googleTypes = [ "amusement_park", "aquarium", "art_gallery", "atm",
-  // "amusement_park", "aquarium", "art_gallery", "atm", "bakery", "bank", "bar", "beauty_salon", "bicycle_store", "book_store", "bowling_alley", "cafe","car_wash", "church", "city_hall", "clothing_store", "convenience_store", "courthouse", "department_store", "doctor", "drugstore", "electronics_store",
-  // "florist", "furniture_store", "gas_station", "gym", "hair_care", "hardware_store", "home_goods_store", "hospital", "laundry", "lawyer", "library", "liquor_store", "lodging", "meal_delivery", "meal_takeaway", "mosque", "movie_theater", "museum", "park", "parking", "pet_store", "pharmacy", "primary_school", "restaurant", "school", "shoe_store", "shopping_mall", "spa", "stadium", "store", "supermarket", "tourist_attraction", "university", "zoo"
+  const googleTypes = [ "amusement_park", "bakery", "bank", "bar", "book_store", "bowling_alley", "cafe", "clothing_store", "convenience_store", "department_store", "doctor", "drugstore", "gym", "hair_care", "hardware_store", "home_goods_store", "hospital", "laundry", "library", "liquor_store", "meal_takeaway","movie_theater", "museum", "park", "restaurant", "shoe_store", "shopping_mall", "spa", "store", "supermarket", "tourist_attraction",
 ];
 
-  const formattedTypes = ["Amusement Parks", "Aquariums", "Art Galleries", "ATMs",
-    // "Amusement Parks", "Aquariums", "Art Galleries", "ATMs", "Bakeries", "Banks", "Bars", "Beauty Salons", "Bicycle Stores", "Book Stores", "Bowling Alleys", "Cafes","Car Washes", "Churches", "City Halls", "Clothing Stores", "Convenience Stores", "Courthouses", "Department Stores", "Doctors", "Drugstores", "Electronics stores", "Florists", "Furniture Stores", "Gas Stations", "Gyms", "Hair Care", "Hardware Stores", "Home Goods Stores", "Hospitals", "Laundromats", "Lawyers", "Libraries", "Liquor Stores", "Lodgings", "Meal deliveries", "Meal Takeaway", "Mosques", "Movie Theaters", "Museums", "Parks", "Parkings", "Pet Stores", "Pharmacies", "Primary schools", "Restaurants", "Schools", "Shoe Stores", "Shopping Malls", "Spas", "Stadiums", "Stores", "Supermarkets", "Tourist Attractions", "Universities", "Zoos"
+  const formattedTypes = ["Amusement Parks",  "Bakeries", "Banks", "Bars", "Book Stores", "Bowling Alleys", "Cafes","Clothing Stores", "Convenience Stores", "Department Stores", "Doctors", "Drugstores", "Gyms", "Hair Care", "Hardware Stores", "Home Goods Stores", "Hospitals", "Laundromats", "Libraries", "Liquor Stores", "Meal Takeaway", "Movie Theaters", "Museums", "Parks", "Restaurants", "Shoe Stores", "Shopping Malls", "Spas", "Stores", "Supermarkets", "Tourist Attractions",
 ];
-  
-  const onSubmit = (auth) => {
-    // console.log(ev)
-    // ev.preventDefault();
-    console.log(auth, formInputs, settingFavCategories)
-    // dispatch(editUserSettings({auth, formInputs, settingFavCategories}))
-    setFormInputs(DEFAULT_FORM_INPUTS);
+
+  const onSubmit = (ev, auth) => {
+    ev.preventDefault();
+    dispatch(editUserSettings({auth, username, settingRadius, settingHomeLat, settingHomeLng, settingFavCategories}))
   };
-  
-  const onChange = (ev) => {
-    console.log('onChange')
-    console.log('ev', ev)
-    const name = ev.target.input;
-    const value = ev.target.value;
-    setFormInputs({
-      ...formInputs,
-      [name]: value,
-    });
-  };
+
+
+  const setLocation = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setSettingHomeLat(position.coords.latitude)
+      setSettingHomeLng(position.coords.longitude)
+    })
+  }
 
   
 
   return (
-    <div id= 'settingsPage'>
+    <div id="categoryContainer">
+    <div id ="categoryHeader">
+      Settings
+      </div>
           <Box
             component="form"
-            sx={{'& > :not(style)': { m: 1, width: '25ch' }}}
+            sx={{'& > :not(style)': { mx: 4, mt: 2 }}}
             noValidate
             autoComplete="off">
-         {Object.keys(formInputs).map(input => {return(
-           <>
-           {console.log(input)}
-           {input !== settingFavCategories ? 
-              (<TextField
-              key={input}
+            <p style={{fontSize: 12, textAlign: 'left', width: '50%'}}>note: your device will fetch your current location every time you pick a new category. for any reason it doesn't, you can still fetch places based on your home location.</p>
+
+           <TextField
+              key={username}
               id="outlined-controlled"
-              label={input}
-              value={formInputs[input]}
-              onChange={ev => onChange(ev)}
-              
-              />)
-              :
-              (
-                <FormGroup>
-                <FormLabel>Choose up to 5 categories:</FormLabel>
-                {formattedTypes.map((category) => (
-                  <FormControlLabel
-                    key={category}
-                    control={
-                      <Checkbox
-                        checked={settingFavCategories.includes(category)}
-                        onChange={handleChange}
-                        name={category}
-                      />
-                    }
-                    label={category}
-                    className={classes.formControlLabel}
+              label="Username"
+              value={username}
+              onChange={ev => setUsername(ev.target.value)}
+              />
+          <TextField
+              key={settingRadius}
+              id="outlined-controlled"
+              label="Radius (in meters)"
+              value={settingRadius}
+              onChange={ev => setSettingRadius(ev.target.value)}
+            />
+
+          <TextField
+              key={settingHomeLat}
+              id="outlined-controlled"
+              label="Home Latitude"
+              value={settingHomeLat}
+              onChange={ev => setSettingHomeLat(ev.target.value)}
+            />
+
+          <TextField
+              key={settingHomeLng}
+              id="outlined-controlled"
+              label="Home Longitude"
+              value={settingHomeLng}
+              onChange={ev => setSettingHomeLng(ev.target.value)}
+            />
+          <Button 
+            variant="outlined" 
+            size="small" 
+            sx={{fontSize: '.8rem', width: '60%'}}
+            onClick={() => setLocation()} 
+            >set your current latitude and longitude</Button>
+
+          <FormLabel>Choose up to 5 categories:</FormLabel>
+            <Grid container spacing={2} alignItems="flex-start" justifyContent='flex-start'>
+                {googleTypes.map((category, idx) => (
+                  
+                <Grid item xs={8} sm={6} md={4} 
+                style={{ textAlign: 'left', margin:0, padding: 0}}
+                key={category}>
+
+                <FormControlLabel
+                // error={}
+                control={
+                  <Checkbox
+                    checked={settingFavCategories.includes(category)}
+                    onChange={(ev) => setSettingFavCategories(ev.target.checked ? [...settingFavCategories, category] : settingFavCategories.filter(c => c !== category) )}
+                    name={category}
                   />
+                }
+                label={formattedTypes[idx]}
+                className={classes.formControlLabel}
+                  />
+                </Grid>
                 ))}
-              </FormGroup>
-              )
-            }
-            </>
-           )}
-         )
-        }
-          <Button onClick={() => onSubmit(auth)}>Submit</Button>
+              </Grid>
+              <Button 
+                variant="outlined" 
+                size="large" 
+                sx={{fontSize: '2rem'}}
+                onClick={(ev) => onSubmit(ev, auth)} 
+                >
+                  Submit
+              </Button>
         </Box>
-    </div>
-  );
-};
+      </div>
+    );
+  };
+
 
 export default Settings;

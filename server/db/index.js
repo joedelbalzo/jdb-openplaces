@@ -10,7 +10,7 @@ const syncAndSeed = async()=> {
       username: 'moe', 
       password: '123',
       settingRadius: 500,
-      settingFavCategories: ['cafe'], 
+      settingFavCategories: ['cafe', 'restaurant', 'museum'], 
       settingHomeLat: 40.776230,
       settingHomeLng: -73.910634
     }),
@@ -46,7 +46,7 @@ const syncAndSeed = async()=> {
 
   ]);
 
-  const [tastys, trattoria, taverna, marthas, sandros, starbucks, library, burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone] = await Promise.all(fakeData.map(async(place) => {await Place.create({
+  const [tastys, trattoria, taverna, marthas, sandros, starbucks, library, burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone, midnightLounge, theNightOwl] = await Promise.all(fakeData.map(async(place) => {await Place.create({
       name: place.name,
       opening_hours: place.opening_hours,
       formatted_address: place.formatted_address,
@@ -55,6 +55,7 @@ const syncAndSeed = async()=> {
       rating: place.rating,
       types: place.types,
       url: place.url,
+      user_ratings_total: place.user_ratings_total,
       geometry: place.geometry
     })}))
   return {
@@ -66,7 +67,7 @@ const syncAndSeed = async()=> {
       admin
     },
     places: {
-      tastys, trattoria, taverna, marthas, sandros, starbucks, library,burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone
+      tastys, trattoria, taverna, marthas, sandros, starbucks, library,burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone, midnightLounge, theNightOwl
     }
   };
 };

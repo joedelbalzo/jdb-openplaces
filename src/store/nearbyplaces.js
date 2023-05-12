@@ -18,7 +18,7 @@ export const fetchNearbyPlaces = (search)=> {
     const response = await axios.get('/api/places/nearby', {
       params: {lat: lat, lng: lng, radius: radius, type: type}
   });
-    console.log('HEY HERE IS THE RESPONSE IN THE STORE', response.data)
+    // console.log('HEY HERE IS THE RESPONSE IN THE STORE', response.data)
       dispatch({type: 'SET_NEARBYPLACES', places: response.data})
   };
 };
