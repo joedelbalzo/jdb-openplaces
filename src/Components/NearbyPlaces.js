@@ -88,7 +88,7 @@ const NearbyPlaces = ()=> {
     }}
     
     const handleFavoriteClick = (ev) => {
-      console.log(ev.target.value)
+      // console.log(ev.target.value)
       if (favorites.includes(ev)) {
         setFavorites(favorites.filter((favorite) => favorite !== ev));
       } else {
@@ -100,7 +100,6 @@ const NearbyPlaces = ()=> {
     const handleExpandClick = i => {
       setExpandedId(expandedId === i ? -1 : i);
       setExpanded(false)
-    
     };
     
   const googleDate = () => {
@@ -149,7 +148,7 @@ const NearbyPlaces = ()=> {
     let type = ev.target.value
     let radius = auth.settingRadius
     dispatch(fetchNearbyPlaces({lat, lng, radius, type}))
-    console.log('dispatched', lat, lng, radius, type)
+    // console.log('dispatched', lat, lng, radius, type)
     setCategoryName(type)
     setSelectedCategory(type);
   }

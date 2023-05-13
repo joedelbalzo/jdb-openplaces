@@ -26,12 +26,26 @@ app.post('/register', async(req, res, next)=> {
 
 app.get('/', isLoggedIn, (req, res, next)=> {
   try {
+    console.log('ok youre in the wrong call')
+
     res.send(req.user); 
   }
   catch(ex){
     next(ex);
   }
 });
+app.get('/favorites', isLoggedIn, async(req, res, next)=> {
+  try {
+    console.log('ok you made it to api favorites')
+    const favorites = await req.user.getFavorites()
+    console.log('favorites', favorites)
+    res.send(favorites)
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
 
 app.put('/', isLoggedIn, async(req, res, next)=> {
   try {

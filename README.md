@@ -11,7 +11,9 @@ Top nav bar:
 -- home location
 -- preferred sorting options? favorite categories?
 -- build an umbrella category...??? <--dream feature>
+--this would take so many api calls, but at least you'd get a very full list.
 -- favorites
+--maybe favorites get to make full Places calls?
 --notifications? maybe if a favorite is about to open or close?
 --about
 -- specifically, this data is pulled from google. please don't be mad at me if it's outdated.
@@ -32,7 +34,7 @@ Immediately, the app says:
 
 to do:
 how to get MORE THINGSSSSSSSS
-buttons for sorting? maybe get rid of the categorical breakdown. have the default be by distance?
+
 what else should be in the drop down? i'd mentioned maybe a notes section. i don't think a user actually needs any reason to fully click on a card. maybe embed a form?
 oh -- on that note, RATING IT! a user's rating!
 maybe look into the distance api for actual distance?

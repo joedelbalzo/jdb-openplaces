@@ -14,7 +14,6 @@ const nearbyPlaces = (state = [], action)=> {
 export const fetchNearbyPlaces = (search)=> {
   return async(dispatch)=> {
     const {lat, lng, radius, type} = search
-    console.log('store 1')
     const response = await axios.get('/api/places/nearby', {
       params: {lat: lat, lng: lng, radius: radius, type: type}
   });

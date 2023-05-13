@@ -3,6 +3,9 @@ const User = require('./User');
 const Place = require('./Place');
 const fakeData = require('./fakeData')
 
+User.hasMany(Place, {as: "favorites" })
+
+
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
   const [moe, lucy, larry, ethyl, admin] = await Promise.all([
@@ -46,7 +49,7 @@ const syncAndSeed = async()=> {
 
   ]);
 
-  const [tastys, trattoria, taverna, marthas, sandros, starbucks, library, burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone, midnightLounge, theNightOwl] = await Promise.all(fakeData.map(async(place) => {await Place.create({
+  const [tastys, trattoria, taverna, marthas, sandros, starbucks, library, burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone, midnightLounge, theNightOwl] = await Promise.all(fakeData.map(async(place) => {return Place.create({
       name: place.name,
       opening_hours: place.opening_hours,
       formatted_address: place.formatted_address,
@@ -58,6 +61,18 @@ const syncAndSeed = async()=> {
       user_ratings_total: place.user_ratings_total,
       geometry: place.geometry
     })}))
+
+  
+  // console.log(moe)
+  // await moe.update({favorites: taverna, burgerClub, pizzaPalace, sunriseCafe})
+  // await ethyl.update({favorites: gymNation, library, burgerClub})
+
+  moe.addFavorite(taverna)
+  moe.addFavorite(burgerClub)
+  moe.addFavorite(library)
+  moe.addFavorite(starbucks)
+
+
   return {
     users: {
       moe,
@@ -68,9 +83,10 @@ const syncAndSeed = async()=> {
     },
     places: {
       tastys, trattoria, taverna, marthas, sandros, starbucks, library,burgerClub, theCafeHouse, cafeMocha, coffeeShop, italianKitchen, pizzaPalace, scienceMuseum, naturalHistory, playzone, dailyGrind, pizzaParadise, centralPark, gymNation, sunriseCafe, luxeSalon, cityMuseum, tacoTaco, theHairSalon, glossyLocks, strikeZone, midnightLounge, theNightOwl
-    }
+    },   
   };
 };
+
 
 
 module.exports = {

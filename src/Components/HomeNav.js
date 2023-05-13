@@ -56,7 +56,7 @@ export default function HomeNav() {
 
   let pages = []
 
-  auth.id ? pages = ['Home', 'Settings', 'About', 'Logout'] : pages = ['Login', 'Home', 'Settings', 'About']
+  auth.id ? pages = ['Home', 'Settings', 'Favorites', 'About', 'Logout'] : pages = ['Login', 'Home', 'About']
 
   auth.isAdmin === true ? pages.unshift('Admin') : ''
   

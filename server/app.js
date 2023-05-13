@@ -11,5 +11,6 @@ app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '../static/index.htm
 app.use('/api/auth', require('./api/auth'));
 app.use('/api/places', require('./api/places'));
 app.use('/api/places/nearby', require('./api/places'));
+app.use('/api/auth/favorites', require('./api/auth'));
 
 module.exports = app;

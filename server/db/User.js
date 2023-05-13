@@ -53,8 +53,7 @@ const User = conn.define('user', {
     type: DECIMAL,
     allowNull: true,
     defaultValue: -77.0209,
-  },
-
+  }
 });
 
 User.addHook('beforeSave', async(user)=> {

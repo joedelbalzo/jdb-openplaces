@@ -66,7 +66,6 @@ export const register = (credentials)=> {
 
 export const editUserSettings= (auth)=> {
   return async(dispatch)=> {
-    console.log(auth)
     const token = window.localStorage.getItem('token')
     const response = await axios.put(`api/auth/`, auth, {
         headers: {
@@ -76,5 +75,6 @@ export const editUserSettings= (auth)=> {
     dispatch({type: 'SET_AUTH', auth: response.data})
   };
 };
+
 
 export default auth;

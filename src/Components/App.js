@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import Home from './Home';
 import Settings from './Settings';
+import Favorites from './Favorites';
 import HomeNav from './HomeNav'
 import Login from './Login';
 import NearbyPlaces from './NearbyPlaces'
@@ -39,34 +39,11 @@ useEffect(()=> {
           <Route path="/places" element={<NearbyPlaces />} />
           <Route path="/home" element={<NearbyPlaces />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/favorites" element={<Favorites />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>
     );
-    
-
-
-    // <div>
-    //   <HomeNav/>
-    //   {
-    //     auth.id ? <NearbyPlaces /> : <Login />
-    //   }
-    //   {
-    //     !!auth.id  && (
-    //       <div id="placesPage">
-    //         {
-    //            <NearbyPlaces />
-    //         }
-
-    //       </div>
-    //     )
-    //   }
-    //     <Routes>
-    //       <Route path="/settings" element={<Settings/>}/>
-    //     </Routes>
-
-    // </div>
-  // );
 };
 
 
