@@ -25,6 +25,7 @@ import { Favorite, FavoriteBorderOutlined } from '@mui/icons-material';
 
 //store imports
 import { fetchNearbyPlaces } from '../store';
+import { borderBottomColor } from '@mui/system';
 
 
 
@@ -88,12 +89,13 @@ const NearbyPlaces = ()=> {
     }}
     
     const handleFavoriteClick = (ev) => {
-      // console.log(ev.target.value)
+      console.log(ev.target.value)
       if (favorites.includes(ev)) {
         setFavorites(favorites.filter((favorite) => favorite !== ev));
       } else {
         setFavorites([...favorites, ev]);
       }
+      // dispatch(updateUserFavorites({auth}))
     };
     
 
@@ -265,12 +267,12 @@ const NearbyPlaces = ()=> {
     <>
     <div> 
     <div id= 'welcomePage'>
-      { capitalizeFirstLetter(auth.username || '') }, {openNow(categoryName).length} {openNow(categoryName).length === 1 ? `${categoryName.split('_').join(' ')} is` : `${pluralize(categoryName, 0).split('_').join(' ')} are`}  open now.<br/>
+      { capitalizeFirstLetter(auth.username || '') }, {openNow(categoryName).length} {openNow(categoryName).length === 1 ? `${categoryName.split('_').join(' ')} is` : `${pluralize(categoryName, 0).split('_').join(' ')} are`}  open now!<br/>
+      <div id="welcomeSmaller">
       {openSoon(30).length === 0 ? '': `${openSoon(30).length} more within 30 minutes.`}<br/>
       {closingSoon(120).length === 0 ? '' : `${closingSoon(120).length} will close within two hours.`}<br/>
-    </div>
+    </div></div>
 
-      {/* <p style={{padding: '1rem', color: 'red', fontSize: 18}}>please don't hit this 100 times. i get charged every hit.</p> */}
     <div id='categoryButtonContainer'>
     {auth.settingFavCategories?.map( category => { return (
         <Button 
@@ -279,10 +281,11 @@ const NearbyPlaces = ()=> {
           sx={{
             fontSize: '2rem',
             marginBottom: '1rem',
-            backgroundColor: selectedCategory === category ? 'dodgerblue' : 'transparent',
+            backgroundColor: selectedCategory === category ? '#1C5D99;' : 'transparent',
             color: selectedCategory === category ? 'white' : 'black',
             "&:hover": {
-              backgroundColor: selectedCategory === category ? 'dodgerblue' : '#f0f0f0'
+              color: 'white',
+              backgroundColor: selectedCategory === category ? '#1C5D99;' : '#A2A3BB'
             }
           }}
           onClick={(ev) => (fetchByCategory(ev))} 
@@ -311,10 +314,14 @@ const NearbyPlaces = ()=> {
               width: '90%',
               marginTop: '1rem',
               mx: 'auto',
-              // borderTop: 1,
-              borderBottom: 1
+              borderRight: 1,
+              borderBottom: 1,
+              borderColor: "#A2A3BB"
                }}>
                   <CardHeader
+                    sx={{
+                      fontSize: "5rem"
+                    }}
                     action={
                       <IconButton aria-label="settings">
                       </IconButton>
@@ -324,12 +331,12 @@ const NearbyPlaces = ()=> {
                   <CardMedia
                   component="img"
                   alt={place.name}
-                  height="300"
+                  height="400"
                   image={photo(place.types)}
                   />
                   <CardContent>
                     <Typography variant="body1" color="text.secondary" textAlign={'left'}>
-                      Address: {place.vicinity}<br/>
+                      Address: {place.vicinity || place.formatted_address}<br/>
                       Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`}
                       <br/>
                       Google Rating: {place.rating} with {place.user_ratings_total} reviews.

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const { User } = require('../db');
+const { User, Place } = require('../db');
 const { isLoggedIn } = require('./middleware');
 
 module.exports = app;
@@ -45,6 +45,30 @@ app.get('/favorites', isLoggedIn, async(req, res, next)=> {
     next(ex);
   }
 });
+app.put(`/favorites/`, isLoggedIn, async(req, res, next)=> {
+  try {
+    console.log('ok you made it to api adding favorites')
+    const addFavorite = await req.user.addFavorite(Place)
+    console.log('favorites', addFavorite)
+    res.send(addFavorite)
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+app.put(`/favorites/:id`, isLoggedIn, async(req, res, next)=> {
+  try {
+    console.log('ok you made it to api removing favorites')
+    const placeToRemove = await Place.findByPk(req.params.id)
+    const removeFavorite = await req.user.removeFavorite(placeToRemove)
+    console.log('favorites', removeFavorite)
+    res.send(removeFavorite)
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
 
 
 app.put('/', isLoggedIn, async(req, res, next)=> {

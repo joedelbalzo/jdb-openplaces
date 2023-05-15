@@ -12,9 +12,9 @@ body {
   padding: 0 3rem;
   width: 350px;
   text-align: center;
-  border: 2px solid #DAF0EE;
+  border: 2px solid #A2A3BB;
   border-radius: 1rem;
-  box-shadow: 4px 4px 1rem #DAF0EE;
+  box-shadow: 4px 4px 1rem #A2A3BB;
 }
 #placesPage{ 
   font-size: 2rem;
@@ -22,7 +22,7 @@ body {
   padding: 1rem;
   width: 95%;
   text-align: center;
-  /* border: 2px solid #DAF0EE; */
+  border: 2px solid #DAF0EE;
   border-radius: 1rem;
   /* box-shadow: 4px 4px 1rem #DAF0EE; */
 }
@@ -42,12 +42,13 @@ body {
   font-size: 4rem;
   box-sizing: content-box;
   width: 95%;
-  margin: 4rem auto;
+  margin: 2rem auto;
   padding: 0;
   text-align: center;
-  border-bottom: 2px solid #DAF0EE;
+  border-bottom: 4px solid #A2A3BB;
+  border-left: 1px solid #A2A3BB;
   border-radius: 1rem;
-  box-shadow: 2px 2px .5rem #DAF0EE;
+  box-shadow: 2px 2px .5rem #A2A3BB;
 }
 
 #categoryHeader{
@@ -60,13 +61,18 @@ body {
   margin-bottom: 2rem;
   border-top-left-radius: .5rem;
   border-top-right-radius: .5rem;
-  background: dodgerblue;
+  background: #1C5D99;
   width: 100%;
 }
 
 #opensSoon{
   font-size: 1.2rem;
   color: red;
+  font-style: italic;
+}
+#openNow{
+  font-size: 1.2rem;
+  color: green;
   font-style: italic;
 }
 
@@ -84,8 +90,13 @@ form > * {
 
 #welcomePage{
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: 1rem;
   color: rgb(0, 30, 17);
-  
+}
+#welcomeSmaller{
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 1rem;
+  color: rgb(0, 30, 17);
 }

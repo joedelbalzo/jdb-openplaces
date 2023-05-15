@@ -24,7 +24,7 @@ import { Favorite, FavoriteBorderOutlined } from '@mui/icons-material';
 //component imports
 
 //store imports
-import { fetchUserFavorites } from '../store';
+import { editUserFavorites, fetchUserFavorites, addUserFavorite, removeUserFavorite } from '../store';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -53,15 +53,19 @@ const Favorites = () => {
 
   useEffect(()=>{
     dispatch(fetchUserFavorites(auth))
-
    },[])
 
-  const handleFavoriteClick = (ev) => {
-    console.log(ev.target.value)
-    if (favorites.includes(ev)) {
-      setFavorites(favorites.filter((favorite) => favorite !== ev));
-    } else {
-      setFavorites([...favorites, ev]);
+  const handleFavoriteClick = (place) => {
+    console.log(place)
+    if(favorites.includes(place)){
+      console.log('already a favorite, going to unfavorite!')
+      dispatch(removeUserFavorite(place, auth))
+      console.log("it's been done! unfavorited!")
+    }
+    if(!favorites.includes(place)){
+      console.log('NOT already a favorite, going to favorite!')
+      dispatch(addUserFavorite(place, auth))
+      console.log("it's been done! favorited!")
     }
   };
   
@@ -71,12 +75,28 @@ const Favorites = () => {
   };
   
 
-  const onSubmit = (ev, auth) => {
+  const onSubmit = async(ev) => {
     ev.preventDefault();
-    dispatch(editUserFavorites({auth, username}))
-  };
+    try{
+        await dispatch(editUserFavorites({auth, place, notes, rating})); 
+        navigate(`/places/${id}`);
 
-  
+      }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  const googleDate = () => {
+    return new Date().getDay()
+  }
+
+  const googleTime = () => {
+    const currentTime = new Date();
+    const hours = currentTime.getHours()
+    const minutes = currentTime.getMinutes()
+    return (parseInt(`${hours < 10 ? '0' + hours : hours}${minutes < 10 ? '0' + minutes : minutes}`));
+  } 
   
   const placeDistance = (lat1, lon1, placeGeometry) => {
     const {lat, lng} = placeGeometry.location
@@ -90,7 +110,45 @@ const Favorites = () => {
     return distance
   }
 
-  console.log(favorites)
+  const openNow = (place) => {
+    const today = googleDate()
+    const time = googleTime()
+    for (let openingHours of place.opening_hours)
+      if(openingHours.open.day === today && openingHours.close.day===today){
+        if (time > openingHours.open.time && time < openingHours.close.time)
+        {return true}
+      }
+      else if (openingHours.open.day === today && openingHours.close.day!==today){
+        if(time > openingHours.open.time){return true}
+      }
+      else if (openingHours.open.day !== today && openingHours.close.day === today) {
+        if (time < openingHours.close.time){return true}
+      }
+      return false
+    }
+
+  const openSoon = (timeQueried, place) => {
+    const today = googleDate()
+    const time = googleTime()
+    for (let hours of place.opening_hours){
+      if (hours.open.day === today && time < (hours.open.time)*1 && (time > (hours.open.time*1)-timeQueried)){
+        return true
+      }
+      return false
+    }
+  }
+
+  const closingSoon = (timeQueried, place) => {
+    const today = googleDate()
+    const time = googleTime()
+    for (let hours of place.opening_hours){
+      if ((hours.open.day === today || hours.open.day === today+1) && (time < (hours.close.time)*1 && time > (hours.close.time)*1 - timeQueried)){
+        return true
+      }
+      return false
+    }
+  }
+
   if(!favorites){console.log('fuuu')}
 
   return (   
@@ -125,13 +183,19 @@ const Favorites = () => {
                     <CardMedia
                     component="img"
                     alt={place.name}
-                    height="300"
+                    height="400"
                     image={place.photo}
                     />
                     <CardContent>
+
+                    { openNow(place) ? <span id="openNow">Currently Open!</span> : <span id="opensSoon">Currently Closed!</span>}
+                    { openSoon(30, place) ? <span id="opensSoon">but it opens soon, hang on!</span> : ''}
+                    { closingSoon(120, place) ? <span id="opensSoon">but it closes soon! go go go!</span> : ''}
+
                       <Typography variant="body1" color="text.secondary" textAlign={'left'}>
-                        Address: {place.vicinity}<br/>
-                        {/* Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`} */}
+                        
+                        Address: {place.vicinity || place.formatted_address}<br/>
+                        Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`}
                         <br/>
                         Google Rating: {place.rating} with {place.user_ratings_total} reviews.
   
@@ -139,8 +203,9 @@ const Favorites = () => {
                       </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
-                      <IconButton aria-label="add to favorites"  onClick={(ev) => handleFavoriteClick(ev)}>
-                        {favorites.includes(place) ? <Favorite /> : <FavoriteBorderOutlined />}
+                      <IconButton aria-label="add to favorites" 
+                      onClick={() => handleFavoriteClick(place)}>
+                        {favorites.includes(place) ? <Favorite sx={{color: "red"}} /> : <FavoriteBorderOutlined />}
                       </IconButton>
                       <IconButton aria-label="share">
                         <ShareIcon />
@@ -166,13 +231,13 @@ const Favorites = () => {
                         <Typography paragraph>
                           
                         Open:
-                            {/* <li style={{listStyleType:"none"}}>{place.weekday_text[0]}</li> 
+                            <li style={{listStyleType:"none"}}>{place.weekday_text[0]}</li> 
                             <li style={{listStyleType:"none"}}>{place.weekday_text[1]}</li> 
                             <li style={{listStyleType:"none"}}>{place.weekday_text[2]}</li> 
                             <li style={{listStyleType:"none"}}>{place.weekday_text[3]}</li> 
                             <li style={{listStyleType:"none"}}>{place.weekday_text[4]}</li> 
                             <li style={{listStyleType:"none"}}>{place.weekday_text[5]}</li> 
-                            <li style={{listStyleType:"none"}}>{place.weekday_text[6]}</li>                         */}
+                            <li style={{listStyleType:"none"}}>{place.weekday_text[6]}</li>
                         </Typography>
                         <Typography paragraph>
                         

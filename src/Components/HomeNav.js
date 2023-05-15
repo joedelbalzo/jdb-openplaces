@@ -52,6 +52,8 @@ export default function HomeNav() {
 
 
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  console.log(isMobile)
   
 
   let pages = []
@@ -81,7 +83,7 @@ export default function HomeNav() {
 
   return (
     <Box sx={{ flexGrow: 1, justifyContent: "center"}}>
-      <AppBar position="static" sx={{height: isMobile ? "15%" : "10%", justifyContent: "center", backgroundColor: "#003b21" }}>
+      <AppBar position="static" sx={{height: isMobile ? "12%" : "15%", justifyContent: "center", backgroundColor: "#003b21" }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ flexGrow: 0, fontSize: isMobile ? "1rem" : "1.5rem"}}>
             <Tooltip title="Open Pages">

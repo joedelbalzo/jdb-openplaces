@@ -36,10 +36,10 @@ useEffect(()=> {
             element={auth.id ? <Navigate to="/places" /> : <Login />}
           />
 
-          <Route path="/places" element={<NearbyPlaces />} />
-          <Route path="/home" element={<NearbyPlaces />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/places" element={auth.id ? <NearbyPlaces />  : <Login />} />
+          <Route path="/home" element={auth.id ? <NearbyPlaces />  : <Login />} />
+          <Route path="/settings" element={auth.id ? <Settings />  : <Login />} />
+          <Route path="/favorites" element={auth.id ? <Favorites />  : <Login />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>
