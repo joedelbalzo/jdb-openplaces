@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../store';
 
 const About = ()=> {
   const { auth } = useSelector(state => state);

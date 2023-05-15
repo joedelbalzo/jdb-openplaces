@@ -17,7 +17,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Grid from '@mui/system/Unstable_Grid/Grid';
-import { fontWeight } from '@mui/system';
 
 
 
@@ -25,7 +24,6 @@ import { fontWeight } from '@mui/system';
 
 //store imports
 import { fetchNearbyPlaces } from '../store';
-import places from '../store/places';
 
 
 

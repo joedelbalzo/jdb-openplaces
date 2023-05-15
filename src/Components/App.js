@@ -6,8 +6,8 @@ import Login from './Login';
 import NearbyPlaces from './NearbyPlaces'
 import About from './About'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPlaces, loginWithToken } from '../store';
-import { Link, Routes, Route, Navigate } from 'react-router-dom';
+import { loginWithToken } from '../store';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 
 const App = ()=> {
