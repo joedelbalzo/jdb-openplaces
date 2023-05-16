@@ -1,6 +1,7 @@
 // react imports
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom'
 // mui imports
 import { Button, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -62,11 +63,23 @@ const Login = ()=> {
         type="submit"
         onClick={ login } 
         style={{
-          fontSize: "1.5rem",
+          fontSize: "1.8rem",
           padding: "1rem"
           }}> 
         Login
         </Button>
+
+        <Button 
+        type="submit"
+        style={{
+          fontSize: "1.4rem",
+          padding: "1rem",
+          }}> 
+        <Link to={'/register'} style={{textDecoration: "none",  textTransform: 'capitalize' }}>Create New User</Link>
+        </Button>
+
+        
+
 
         {/* <Button 
           type="submit" 

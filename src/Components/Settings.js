@@ -73,6 +73,7 @@ const Settings = () => {
   
 
   return (
+    <div id="settingsContainer">
     <div id="categoryContainer">
     <div id ="categoryHeader">
       Settings
@@ -153,6 +154,7 @@ const Settings = () => {
                   Submit
               </Button>
         </Box>
+      </div>
       </div>
     );
   };

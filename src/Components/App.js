@@ -8,6 +8,7 @@ import About from './About'
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken } from '../store';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Register from './Register';
 
 
 const App = ()=> {
@@ -41,6 +42,10 @@ useEffect(()=> {
           <Route path="/settings" element={auth.id ? <Settings />  : <Login />} />
           <Route path="/favorites" element={auth.id ? <Favorites />  : <Login />} />
           <Route path="/about" element={<About />} />
+
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     );

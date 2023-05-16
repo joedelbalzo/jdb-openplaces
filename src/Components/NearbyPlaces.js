@@ -44,8 +44,6 @@ const NearbyPlaces = ()=> {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [currentCoords, setCurrentCoords]=useState(null)
-  const [previousCoords, setPreviousCoords] = useState('');
-  const [previousFetchTime, setPreviousFetchTime] = useState(0);  
   const [expanded, setExpanded] = React.useState(false);
   const [expandedId, setExpandedId] = React.useState(-1);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -56,6 +54,8 @@ const NearbyPlaces = ()=> {
     dispatch(fetchUserFavorites())
     const { settingHomeLat, settingHomeLng, settingRadius, settingFavCategories } = auth;
     
+    if (!auth.settingRadius){console.log(['shit dont exist yet'])}
+
     navigator.geolocation.getCurrentPosition(function (position) {
       setCurrentCoords({
         lat: position.coords.latitude,
@@ -85,6 +85,7 @@ const NearbyPlaces = ()=> {
     
     if(!nearbyPlaces)return null
     if(!auth){navigate('../')}
+
     
     
     const handleFavoriteClick = (place) => {
@@ -218,7 +219,7 @@ const NearbyPlaces = ()=> {
     }
     return placesClosingSoon
   }
-console.log(favorites, 'favorites')
+// console.log(favorites, 'favorites')
 
 
   return (   
@@ -227,7 +228,7 @@ console.log(favorites, 'favorites')
     <div id= 'welcomePage'>
       { capitalizeFirstLetter(auth.username || '') }, {openNow(categoryName).length} {openNow(categoryName).length === 1 ? `${categoryName.split('_').join(' ')} is` : `${pluralize(categoryName, 0).split('_').join(' ')} are`}  open now!<br/>
       <div id="welcomeSmaller">
-      {openSoon(30).length === 0 ? '': `${openSoon(30).length} more within 30 minutes.`}<br/>
+      {openSoon(30).length === 0 ? '': `${openSoon(30).length} more within 30 minutes.${<br/>}`}
       {closingSoon(120).length === 0 ? '' : `${closingSoon(120).length} will close within two hours.`}<br/>
     </div></div>
 
@@ -279,76 +280,70 @@ console.log(favorites, 'favorites')
               borderBottom: 1,
               borderColor: "#A2A3BB"
                }}>
-                  <CardHeader
-                    sx={{
-                      fontSize: "5rem"
-                    }}
-                    action={
-                      <IconButton aria-label="settings">
-                      </IconButton>
-                    }
-                    title={place.name}
-                  />
-                  <CardMedia
-                  component="img"
-                  alt={place.name}
-                  height="400"
-                  image={place.photo}
-                  />
-                  <CardContent>
-                    <Typography variant="body1" color="text.secondary" textAlign={'left'}>
-                      Address: {place.vicinity || place.formatted_address}<br/>
-                      Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`}
-                      <br/>
-                      Google Rating: {place.rating} with {place.user_ratings_total} reviews.
+                <CardHeader
+                  sx={{
+                    fontSize: 51
+                  }}
+                  variant='h1'
+                  title={place.name}
+                />
+                <CardMedia
+                component="img"
+                alt={place.name}
+                height="400"
+                image={place.photo}
+                />
+                <CardContent>
+                  <Typography  color="text.secondary" textAlign={'left'} sx={{fontSize: "1.3rem"}}>
+                    Address: {place.vicinity || place.formatted_address}<br/>
+                    Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`}
+                    <br/>
+                    Google Rating: {place.rating} with {place.user_ratings_total} reviews.
 
+
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites"  onClick={() => handleFavoriteClick(place)}  
+                  className={isFavorite ? 'favoriteButton' : 'notFavoriteButton'}>
+                    {isFavorite ? <Favorite /> : <FavoriteBorderOutlined />}
+                  </IconButton>
+                  <IconButton aria-label="share">
+                    <ShareIcon />
+                  </IconButton>
+                  <ExpandMore
+                    expand={expanded}
+                    onClick={() => handleExpandClick(i)}
+                    aria-expanded={expandedId === i}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </ExpandMore>
+                </CardActions>
+                <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
+                  <Grid 
+                  container
+                  direction="row"
+                  justifyContent="space-around"
+                  alignItems="flex-start"
+                  textAlign="left"
+
+                  rowSpacing={1} 
+                  columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Typography paragraph>
+                      
+                    Open:
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[0]}</li> 
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[1]}</li> 
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[2]}</li> 
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[3]}</li> 
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[4]}</li> 
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[5]}</li> 
+                        <li style={{listStyleType:"none"}}>{place.weekday_text[6]}</li>                        
+                    </Typography>
+                    <Typography paragraph>
 
                     </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites"  onClick={() => handleFavoriteClick(place)}  
-                    className={isFavorite ? 'favoriteButton' : 'notFavoriteButton'}>
-                     {isFavorite ? <Favorite /> : <FavoriteBorderOutlined />}
-                    </IconButton>
-                    <IconButton aria-label="share">
-                      <ShareIcon />
-                    </IconButton>
-                    <ExpandMore
-                      expand={expanded}
-                      onClick={() => handleExpandClick(i)}
-                      aria-expanded={expandedId === i}
-                      aria-label="show more"
-                    >
-                      <ExpandMoreIcon />
-                    </ExpandMore>
-                  </CardActions>
-                  <Collapse in={expandedId === i} timeout="auto" unmountOnExit>
-                    <Grid 
-                    container
-                    direction="row"
-                    justifyContent="space-around"
-                    alignItems="flex-start"
-                    textAlign="left"
-                    rowSpacing={1} 
-                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                      <Typography paragraph>
-                        
-                      Open:
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[0]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[1]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[2]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[3]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[4]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[5]}</li> 
-                          <li style={{listStyleType:"none"}}>{place.weekday_text[6]}</li>                        
-                      </Typography>
-                      <Typography paragraph>
-                      
- 
-                        
-                        
-                      </Typography>
-                      
                     </Grid>
                   </Collapse>
                 </Card>

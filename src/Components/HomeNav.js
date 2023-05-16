@@ -93,7 +93,7 @@ export default function HomeNav() {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2, fontSize: isMobile ? "1.5rem" : "2rem" }}
+                sx={{ mr: 2, fontSize: isMobile ? "1.5rem" : "2rem", width: "50px" }}
               >  
                 <MenuIcon />
               </IconButton>
@@ -138,18 +138,18 @@ export default function HomeNav() {
             onClick={()=>navigateTo('/')} 
             sx={{ 
               margin: "auto",
-              // flexGrow: 1, 
-              fontSize: '3rem', 
+              flexGrow: 1, 
+              fontSize: '2.5rem', 
               ":hover": {cursor:"pointer"},
-              maxWidth: 'calc(100% - 300px)',
+              maxWidth: 'calc(100% - 100px)',
               textAlign: 'center'
             }}
           >
            Open Places 
           </Typography>    
   
-          {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem"}} onClick={()=> _logout()}>Logout</Button> : 
-          <Button color="inherit" sx={{fontSize: "1.5rem"}} onClick={()=>navigateTo()}>Login</Button>}
+          {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem",  width: "50px", textTransform: 'capitalize'}} onClick={()=> _logout()}>Logout</Button> : 
+          <Button color="inherit" sx={{fontSize: "1.5rem", width: "50px",  textTransform: 'capitalize' }} onClick={()=>navigateTo()}>Login</Button>}
         </Toolbar>
       </AppBar>
     </Box>
