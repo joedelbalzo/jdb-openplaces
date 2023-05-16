@@ -17,13 +17,13 @@ const Register = ()=> {
       username,
       password
     };
-    try {
-      dispatch(register(credentials));
-      navigate('/home');
-    }
-    catch(ex){
-      console.log(ex)
-    }
+      try {
+        dispatch(register(credentials));
+        navigate('/home');
+      }
+      catch(ex){
+        console.log(ex)
+      }
   };
 
   return (
@@ -49,7 +49,7 @@ const Register = ()=> {
           name = 'new password'
           type="password"
           variant="outlined" 
-          onChange={  ev => setPassword(ev.target.value) }/> 
+          onChange={  ev => setPassword(ev.target.value) }/>
 
     <Button 
         type="submit"

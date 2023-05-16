@@ -73,7 +73,6 @@ const Settings = () => {
   
 
   return (
-    <div id="settingsContainer">
     <div id="categoryContainer">
     <div id ="categoryHeader">
       Settings
@@ -118,7 +117,8 @@ const Settings = () => {
           <Button 
             variant="outlined" 
             size="small" 
-            sx={{fontSize: '.8rem', width: '60%'}}
+           
+            sx={{fontSize: '.9rem', width: "fit-content"}}
             onClick={() => setLocation()} 
             >set your current latitude and longitude</Button>
 
@@ -127,7 +127,7 @@ const Settings = () => {
                 {googleTypes.map((category, idx) => (
                   
                 <Grid item xs={8} sm={6} md={4} 
-                style={{ textAlign: 'left', margin:0, padding: 0}}
+                sx={{ textAlign: 'left', fontSize:"2rem", margin:"-1rem", padding: "-1rem"}}
                 key={category}>
 
                 <FormControlLabel
@@ -154,7 +154,6 @@ const Settings = () => {
                   Submit
               </Button>
         </Box>
-      </div>
       </div>
     );
   };

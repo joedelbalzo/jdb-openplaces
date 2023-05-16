@@ -1,7 +1,7 @@
 // react imports
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 // mui imports
 import { Button, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -14,7 +14,10 @@ import { attemptLogin } from '../store';
 
 const Login = ()=> {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const theme = useTheme();
+  const [passwordError, setPasswordError] = useState('');
+
 
   const [credentials, setCredentials] = useState({
     username: '',
@@ -30,7 +33,16 @@ const Login = ()=> {
 
   const login = (ev)=> {
     ev.preventDefault();
-    dispatch(attemptLogin(credentials));
+    try{
+      dispatch(attemptLogin(credentials));
+      console.log('dispatching')
+      navigate('/home');
+    }
+    catch(ex){
+        console.log('incorrect')
+        setPasswordError('Incorrect username or password. Please try again.');
+        console.log(ex)
+    }
   };
   return (
     <div id="loginPage">
@@ -58,6 +70,9 @@ const Login = ()=> {
           variant="outlined" 
           value={ credentials.password } 
           onChange={ onChange }/>
+
+{passwordError && <p style={{ color: 'red', fontSize: ".8rem" }}>{passwordError}</p>}
+
               
         <Button 
         type="submit"
