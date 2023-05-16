@@ -6,9 +6,9 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { Checkbox } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import { makeStyles } from '@material-ui/core/styles';
+import {FormLabel} from '@mui/material';
 import {Grid} from '@mui/material';
+import { makeStyles } from '@mui/material';
 
 const Settings = () => {
   const { auth } = useSelector(state => state);
