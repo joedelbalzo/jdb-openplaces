@@ -1,4 +1,4 @@
-//todo -- go through URLs and add this: https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 it does lat and lng
+//todo -- go through URLs and add this: https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=47.5951518%2C-122.3316393 it does lat and lng
 
 const photo = (category) =>{
   let picture;
@@ -72,7 +72,7 @@ const fakeData = [
   rating:4.1,
   user_ratings_total: 2156,
   types: ['restaurant'], 
-  url: 'https://maps.app.goo.gl/o1biXcWAXjGfb7w47?g_st=ic',
+  url: `https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.775145%2C-73.909574`,
   geometry: {'location': {"lat": 40.775145 , "lng": -73.909574}}
 },
 {
@@ -97,7 +97,7 @@ const fakeData = [
   rating:4.5,
   user_ratings_total: 3256,
   types: ['restaurant'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.776422%2C-73.910533',
   geometry: {'location': {"lat": 40.776422 , "lng": -73.910533}}
 },
 {
@@ -121,7 +121,7 @@ const fakeData = [
   rating:4.8,
   user_ratings_total: 15256,
   types: ['restaurant'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.774342%2C-73.908012 ',
   geometry: {'location': {"lat": 40.774342 , "lng": -73.908012}}
 
 },
@@ -147,7 +147,7 @@ const fakeData = [
   rating:4.6,
   user_ratings_total: 8256,
   types: ['bakery', 'cafe'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.773969%2C-73.907492 ',
   geometry: {'location': {"lat": 40.773969 , "lng": -73.907492}}
 
 },
@@ -173,7 +173,7 @@ const fakeData = [
   rating:4.2,
   user_ratings_total: 2256,
   types: ['restaurant'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.776422%2C-73.910533 ',
   geometry: {'location': {"lat": 40.776422 , "lng": -73.910533}}
 
 },
@@ -199,7 +199,7 @@ const fakeData = [
   rating:3.4,
   user_ratings_total: 2564,
   types: ['cafe'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.775431%2C-73.911896 ',
   geometry: {'location': {"lat": 40.775431 , "lng": -73.911896}}
 
 },
@@ -226,7 +226,7 @@ const fakeData = [
   rating:3.4,
   user_ratings_total: 26,
   types: ['library'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.777243%2C-73.909149 ',
   geometry: {'location': {"lat": 40.777243 , "lng": -73.909149}}
 },
 {
@@ -252,7 +252,7 @@ const fakeData = [
   rating:4.9,
   user_ratings_total: 2561,
   types: ['restaurant'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.766404%2C-73.920511 ',
   geometry: {'location': {"lat": 40.766404 , "lng": -73.920511}}
 },
 // chatgpt fake data
@@ -278,7 +278,7 @@ const fakeData = [
   user_ratings_total: 2576,
   types: ['cafe'],
   photo: photo('cafe'),
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.778873%2C-73.981029 ',
   geometry: {'location': {'lat': 40.778873, 'lng': -73.981029}} 
 },
 {
@@ -304,7 +304,7 @@ const fakeData = [
   user_ratings_total: 256,
   types: ['cafe'],
   photo: photo('cafe'), 
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.773322%2C-73.957374 ',
   geometry: {'location': {"lat": 40.773322 , "lng": -73.957374}}
   },
   {
@@ -330,7 +330,7 @@ const fakeData = [
     user_ratings_total: 256,
     types: ['cafe'],
     photo: photo('cafe'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.765956%2C-73.922119 ',
     geometry: {'location': {"lat": 40.765956 , "lng": -73.922119}}
   },
   {
@@ -356,7 +356,7 @@ const fakeData = [
       user_ratings_total: 256,
       types: ['restaurant'],
       photo: photo('restaurant'),
-      url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+      url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.765678%2C-73.922790 ',
       geometry: {'location': {"lat": 40.765678, "lng": -73.922790}}
     },
     {
@@ -382,7 +382,7 @@ const fakeData = [
   user_ratings_total: 256,
   types: ['restaurant'],
   photo: photo('restaurant'),
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.768171%2C-73.919099 ',
   geometry: {'location': {"lat": 40.768171 , "lng": -73.919099}}
 },
 {
@@ -406,7 +406,7 @@ weekday_text: [ "Monday: 10:00 AM -- 5:00 PM",
 "Sunday: 10:00 AM -- 5:00 PM"],
 rating:4.7,
 types: ['museum'],
-url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.773293%2C-73.983597 ',
 photo: photo('museum'),
 geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
 },
@@ -433,7 +433,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                   user_ratings_total: 256,
                   types: ['museum'],
                   photo: photo('museum'),
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.781096%2C-73.972191 ',
   geometry: {'location': {"lat": 40.781096 , "lng": -73.972191}}
 },
 {
@@ -458,7 +458,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                   user_ratings_total: 256,
                   types: ['amusement_park'],
                   photo: photo('amusement_park'),
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.765206%2C-73.921455 ',
   geometry: {'location': {"lat": 40.765206 , "lng": -73.921455}}
 },
 {
@@ -485,7 +485,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
   user_ratings_total: 256,
   photo: photo('cafe'),
   types: ['cafe'],
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.7749%2C-122.4194 ',
   },
 {
   name: "Pizza Paradise",
@@ -510,7 +510,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
   user_ratings_total: 256,
   types: ['restaurant'],
   photo: photo('restaurant'),
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=41.308274%2C-72.928972 ',
   geometry: {'location': {"lat": 41.308274 , "lng": -72.928972}}
   },
   {
@@ -536,7 +536,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                     user_ratings_total: 256,
                     types: ['park'],
                     photo: photo('park'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.785091%2C-73.968285 ',
     geometry: {'location': {"lat": 40.785091 , "lng": -73.968285}}
   },
   {
@@ -562,7 +562,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
                     user_ratings_total: 6256,
                     types: ['gym', 'health'],
                     photo: photo('gym'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.742925%2C-74.006798 ',
     geometry: {'location': {"lat": 40.742925, "lng": -74.006798}}
   },
   {
@@ -588,7 +588,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 2556,
     types: ['cafe'],
     photo: photo('cafe'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.7749%2C-122.4194 ',
     geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
     },
   {
@@ -614,7 +614,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 256,
     types: ['beauty_salon', 'hair_care'],
     photo: photo('beauty_salon'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.7749%2C-122.4194 ',
     geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
     },
   {
@@ -640,7 +640,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 256,
     types: ['museum'],
     photo: photo('museum'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=38.633386%2C-90.200999 ',
     geometry: {'location': {"lat": 38.633386 , "lng": -90.200999}}
     },
 {
@@ -666,7 +666,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
   user_ratings_total: 256,
   types: ['restaurant'],
   photo: photo('restaurant'),
-  url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+  url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=40.7128%2C-74.0060 ',
   geometry: {'location': {"lat": 40.7128 , "lng": -74.0060}}
   },
   {
@@ -692,7 +692,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 256,
     types: ['hair_care'],
     photo: photo('hair_care'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.7749%2C-122.4194 ',
     geometry: {'location': {"lat": 37.7749 , "lng": -122.4194}}
     },
     {
@@ -718,7 +718,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
       user_ratings_total: 256,
       types: ['hair_care'],
       photo: photo('hair_care'),
-      url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+      url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.7749%2C-122.4194 ',
       geometry: {'location': {"lat": 37.7749, "lng": -122.4194}}
       },
   {
@@ -744,7 +744,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 256,
     types: ['bowling_alley'],
     photo: photo('bowling_alley'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=39.7392%2C-104.9903 ',
     geometry: {'location': {"lat": 39.7392, "lng": -104.9903}}
     },
     {
@@ -770,7 +770,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
       user_ratings_total: 123,
       types: ['bar', 'nightlife'],
       photo: photo('bar'),
-      url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+      url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.12345%2C-122.45678 ',
       geometry: {'location': {"lat": 37.12345 , "lng": -122.45678}}
       },
   {
@@ -798,7 +798,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 150,
     types: ['bar', 'nightclub'],
     photo: photo('bar'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.7749%2C-122.4194 ',
     geometry: {'location': {"lat": 37.7749, "lng": -122.4194}}
     },
     {
@@ -824,7 +824,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
       user_ratings_total: 150,
       types: ['restaurant'],
       photo: photo('restaurant'),
-      url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+      url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.123456%2C-122.987654 ',
       geometry: {'location': {"lat": 37.123456, "lng": -122.987654}}
       },
     {
@@ -850,7 +850,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
       user_ratings_total: 150,
       types: ['restaurant'],
       photo: photo('restaurant'),
-      url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+      url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=37.123456%2C-122.987654 ',
       geometry: {'location': {"lat": 37.123456, "lng": -122.987654}}
       },
   {
@@ -876,7 +876,7 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 200,
     types: ['restaurant'],
     photo: photo('restaurant'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=38.987654%2C-121.123456 ',
     geometry: {'location': {"lat": 38.987654, "lng": -121.123456}}
     },
   {
@@ -902,8 +902,8 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
     user_ratings_total: 200,
     types: ['restaurant'],
     photo: photo('restaurant'),
-    url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
-    geometry: {'location': {"lat": 38.987654, "lng": -121.123456}}
+    url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=38.987654%2C-121.163466 ',
+    geometry: {'location': {"lat": 38.987654, "lng": -121.163466}}
     },
     {
       name: "Spice Kingdom",
@@ -928,8 +928,8 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
       user_ratings_total: 200,
       types: ['restaurant'],
       photo: photo('restaurant'),
-      url: 'https://www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393 ',
-      geometry: {'location': {"lat": 38.987654, "lng": -121.123456}}
+      url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=38.987654%2C-122.123456 ',
+      geometry: {'location': {"lat": 38.987654, "lng": -122.123456}}
       },
       {
         name: "Taco Fiesta",
@@ -954,8 +954,8 @@ geometry: {'location': {"lat": 40.773293 , "lng": -73.983597}}
         user_ratings_total: 150,
         types: ['restaurant'],
         photo: photo('restaurant'),
-        url: 'https://maps.app.goo.gl/tacofiesta123',
-        geometry: {'location': {"lat": 39.876543, "lng": -120.654321}}
+        url: 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=39.872543%2C-120.654321 ',
+        geometry: {'location': {"lat": 39.873543, "lng": -120.654321}}
         }, 
   
   

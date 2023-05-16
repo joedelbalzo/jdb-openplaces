@@ -189,9 +189,9 @@ const Favorites = () => {
                     { openSoon(30, place) ? <span id="opensSoon">but it opens soon, hang on!</span> : ''}
                     { closingSoon(120, place) ? <span id="opensSoon">but it closes soon! go go go!</span> : ''}
 
-                      <Typography variant="body1" color="text.secondary" textAlign={'left'}>
+                    <Typography  color="text.secondary" textAlign={'left'} sx={{fontSize: "1.3rem"}}>
                         
-                        Address: {place.vicinity || place.formatted_address}<br/>
+                      <Link to={place.url} style={{color: "inherit"}}>Address: {place.vicinity || place.formatted_address}</Link><br/>
                         Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`}
                         <br/>
                         Google Rating: {place.rating} with {place.user_ratings_total} reviews.

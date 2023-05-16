@@ -1,7 +1,7 @@
 // react imports
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 // mui imports
 import { styled } from '@mui/material/styles';
@@ -23,7 +23,7 @@ import { Favorite, FavoriteBorderOutlined } from '@mui/icons-material';
 //component imports
 
 //store imports
-import { fetchNearbyPlaces, editUserFavorites, fetchUserFavorites, addUserFavorite, removeUserFavorite  } from '../store';
+import { fetchNearbyPlaces, fetchUserFavorites, addUserFavorite, removeUserFavorite  } from '../store';
 
 
 
@@ -295,7 +295,7 @@ const NearbyPlaces = ()=> {
                 />
                 <CardContent>
                   <Typography  color="text.secondary" textAlign={'left'} sx={{fontSize: "1.3rem"}}>
-                    Address: {place.vicinity || place.formatted_address}<br/>
+                    <Link to={place.url} style={{color: "inherit"}}>Address: {place.vicinity || place.formatted_address}</Link><br/>
                     Distance: {placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry) <.1 ? 'Less than .1 miles away!' : `${Math.floor(Math.round(placeDistance(auth.settingHomeLat, auth.settingHomeLng, place.geometry)*10))/10} miles away`}
                     <br/>
                     Google Rating: {place.rating} with {place.user_ratings_total} reviews.
