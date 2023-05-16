@@ -8,7 +8,7 @@ import { Checkbox } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import {FormLabel} from '@mui/material';
 import {Grid} from '@mui/material';
-import { makeStyles } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const Settings = () => {
   const { auth } = useSelector(state => state);
