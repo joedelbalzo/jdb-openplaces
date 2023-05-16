@@ -15,7 +15,7 @@ const favorites = (state = [], action)=> {
 
   export const fetchUserFavorites = (auth)=> {
     return async(dispatch)=> {
-      console.log()
+      // console.log()
       const token = window.localStorage.getItem('token')
       const response = await axios.get(`/api/auth/favorites`, {
         headers: {
@@ -28,20 +28,20 @@ const favorites = (state = [], action)=> {
   export const addUserFavorite= (place, auth)=> {
     return async(dispatch)=> {
       const token = window.localStorage.getItem('token')
-      console.log('add user favorite store func')
+      // console.log('add user favorite store func')
       const response = await axios.put(`/api/auth/favorites/add/`, {place}, {
         headers: {
           authorization: token
         }  
       });
-      console.log('STORE RESPONSE TO ADD', response.data)
+      // console.log('STORE RESPONSE TO ADD', response.data)
       dispatch({type: 'ADD_FAVORITE', favorite: response.data})
     };
   };
   export const removeUserFavorite= (place, auth)=> {
     return async(dispatch)=> {
       const token = window.localStorage.getItem('token')
-      console.log('remove user favorite store func', place.id)
+      // console.log('remove user favorite store func', place.id)
       const response = await axios.delete(`/api/auth/favorites/remove/${place.id}`, {
         headers: {
           authorization: token

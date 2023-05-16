@@ -88,17 +88,16 @@ const NearbyPlaces = ()=> {
     
     
     const handleFavoriteClick = (place) => {
-      console.log(place)
+      // console.log(place)
       if(favorites.includes(place)){
-        console.log('already a favorite, going to unfavorite!')
+        // console.log('already a favorite, going to unfavorite!')
         dispatch(removeUserFavorite(place, auth))
         // setFavorites(favorites.filter(_fav => _fav.id !== action.favorite.id))
         
       }
       if(!favorites.includes(place)){
-        console.log('NOT already a favorite, going to favorite!')
+        // console.log('NOT already a favorite, going to favorite!')
         dispatch(addUserFavorite(place, auth))
-        console.log(favorites, 'favorites in handle')
       }
       dispatch(fetchUserFavorites())
     };

@@ -54,14 +54,14 @@ const Favorites = () => {
    },[])
 
   const handleFavoriteClick = (place) => {
-    console.log(place)
+    // console.log(place)
     if(favorites.includes(place)){
-      console.log('already a favorite, going to unfavorite!')
+      // console.log('already a favorite, going to unfavorite!')
       dispatch(removeUserFavorite(place, auth))
 
     }
     if(!favorites.includes(place)){
-      console.log('NOT already a favorite, going to favorite!')
+      // console.log('NOT already a favorite, going to favorite!')
       dispatch(addUserFavorite(place, auth))
     }
   };
