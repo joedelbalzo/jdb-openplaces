@@ -26,8 +26,7 @@ app.post('/register', async(req, res, next)=> {
 
 app.get('/', isLoggedIn, (req, res, next)=> {
   try {
-    console.log('ok youre in the wrong call')
-
+    console.log('ok youre in the GET call')
     res.send(req.user); 
   }
   catch(ex){
@@ -36,33 +35,35 @@ app.get('/', isLoggedIn, (req, res, next)=> {
 });
 app.get('/favorites', isLoggedIn, async(req, res, next)=> {
   try {
-    console.log('ok you made it to api favorites')
+    console.log('api GET favorites call!!!')
     const favorites = await req.user.getFavorites()
-    console.log('favorites', favorites)
+    // console.log('favorites', favorites)
     res.send(favorites)
   }
   catch(ex){
     next(ex);
   }
 });
-app.put(`/favorites/`, isLoggedIn, async(req, res, next)=> {
+app.put(`/favorites/add`, isLoggedIn, async(req, res, next)=> {
   try {
-    console.log('ok you made it to api adding favorites')
-    const addFavorite = await req.user.addFavorite(Place)
-    console.log('favorites', addFavorite)
-    res.send(addFavorite)
+    const {place} = req.body
+    const user = req.user
+    const favorite = await user.addFavorite(place.id)
+    console.log('favorites',favorite)
+
+    res.send(favorite)
   }
   catch(ex){
     next(ex);
   }
 });
-app.put(`/favorites/:id`, isLoggedIn, async(req, res, next)=> {
+app.delete(`/favorites/remove/:id`, isLoggedIn, async(req, res, next)=> {
   try {
     console.log('ok you made it to api removing favorites')
+    const user = req.user
     const placeToRemove = await Place.findByPk(req.params.id)
-    const removeFavorite = await req.user.removeFavorite(placeToRemove)
-    console.log('favorites', removeFavorite)
-    res.send(removeFavorite)
+    const removeFavorite = await user.removeFavorite(placeToRemove)
+    res.status(200).send({ message: 'favorite removed' });
   }
   catch(ex){
     next(ex);

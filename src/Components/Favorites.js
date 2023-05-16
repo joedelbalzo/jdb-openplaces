@@ -39,12 +39,12 @@ const Favorites = () => {
   const { auth, nearbyPlaces, favorites } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  if (!auth && !nearbyPlaces) {
+  if (!auth && !nearbyPlaces && !favorites) {
     return 'wtf';
   }
 
   const [username, setUsername] = useState(auth.username);
-  const [setFavorites] = useState([]);
+  // const [setFavorites] = useState([]);
   const [checked, setChecked] = useState('');
   const [expanded, setExpanded] = React.useState(false);
   const [expandedId, setExpandedId] = React.useState(-1);
@@ -58,12 +58,11 @@ const Favorites = () => {
     if(favorites.includes(place)){
       console.log('already a favorite, going to unfavorite!')
       dispatch(removeUserFavorite(place, auth))
-      console.log("it's been done! unfavorited!")
+
     }
     if(!favorites.includes(place)){
       console.log('NOT already a favorite, going to favorite!')
       dispatch(addUserFavorite(place, auth))
-      console.log("it's been done! favorited!")
     }
   };
   
@@ -73,17 +72,17 @@ const Favorites = () => {
   };
   
 
-  const onSubmit = async(ev) => {
-    ev.preventDefault();
-    try{
-        await dispatch(editUserFavorites({auth, place, notes, rating})); 
-        navigate(`/places/${id}`);
+  // const onSubmit = async(ev) => {
+  //   ev.preventDefault();
+  //   try{
+  //       await dispatch(editUserFavorites({auth, place, notes, rating})); 
+  //       navigate(`/places/${id}`);
 
-      }
-    catch(err){
-      console.log(err)
-    }
-  }
+  //     }
+  //   catch(err){
+  //     console.log(err)
+  //   }
+  // }
 
   const googleDate = () => {
     return new Date().getDay()
@@ -159,10 +158,10 @@ const Favorites = () => {
           <div>
             {favorites
               .map( (place, i) => { return ( 
-                <div>
+                <div key={place.id}>
                   {/* {place.name} */}
               <Card 
-              key={place.id}
+              
               sx={{ 
                 maxWidth: '700px',
                 width: '90%',
