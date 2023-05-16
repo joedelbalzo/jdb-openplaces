@@ -53,7 +53,7 @@ export default function HomeNav() {
 
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  // console.log(isMobile)
+  console.log(isMobile)
   
 
   let pages = []
@@ -83,9 +83,9 @@ export default function HomeNav() {
 
   return (
     <Box sx={{ flexGrow: 1, justifyContent: "center"}}>
-      <AppBar position="static" sx={{height: isMobile ? "12%" : "15%", justifyContent: "center", backgroundColor: "#003b21" }}>
+      <AppBar position="static" sx={{height: "6rem", justifyContent: "center", backgroundColor: "#003b21" }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Box sx={{ flexGrow: 0, fontSize: isMobile ? "1rem" : "1.5rem"}}>
+          <Box sx={{ flexGrow: 0}}>
             <Tooltip title="Open Pages">
               <IconButton 
                 onClick={handleOpenUserMenu} 
@@ -93,7 +93,7 @@ export default function HomeNav() {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2, fontSize: isMobile ? "1.5rem" : "2rem", width: "50px" }}
+                sx={{width: "100px", transform: "scale(1.4)"}}
               >  
                 <MenuIcon />
               </IconButton>
@@ -118,13 +118,13 @@ export default function HomeNav() {
               {pages.map((page) => (
                 page !== 'Logout' ? 
                   (<MenuItem key={page} onClick={() => navigateTo(page)}>
-                    <Typography textAlign="center" fontSize={isMobile ? "1.5rem" : "2rem"}>
+                    <Typography textAlign="center" fontSize={isMobile ? "1.5rem" : "1.5rem"}>
                     {page}
                     </Typography>
                   </MenuItem> )
                 :  
                   (<MenuItem key={page} onClick={() => _logout()}>
-                    <Typography textAlign="center" fontSize={isMobile ? "1.5rem" : "2rem"}>
+                    <Typography textAlign="center" fontSize={isMobile ? "1.5rem" : "1.5rem"}>
                     {page}
                     </Typography>
                  </MenuItem>)
@@ -141,7 +141,7 @@ export default function HomeNav() {
               flexGrow: 1, 
               fontSize: '2.5rem', 
               ":hover": {cursor:"pointer"},
-              maxWidth: 'calc(100% - 100px)',
+              maxWidth: 'calc(100% - 200px)',
               textAlign: 'center'
             }}
           >
@@ -149,7 +149,7 @@ export default function HomeNav() {
           </Typography>    
   
           {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem",  width: "50px", textTransform: 'capitalize'}} onClick={()=> _logout()}>Logout</Button> : 
-          <Button color="inherit" sx={{fontSize: "1.5rem", width: "50px",  textTransform: 'capitalize' }} onClick={()=>navigateTo()}>Login</Button>}
+          <Button color="inherit" sx={{fontSize: "1.5rem", width: "100px",  textTransform: 'capitalize' }} onClick={()=>navigateTo()}>Login</Button>}
         </Toolbar>
       </AppBar>
     </Box>

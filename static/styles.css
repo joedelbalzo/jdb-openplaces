@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: auto;
   font-family: verdana;
   font-size: 2rem;
   color: rgb(0, 30, 17);
@@ -10,7 +10,7 @@ body {
   font-size: 2rem;
   margin: 2rem auto;
   padding: 0 3rem;
-  width: 350px;
+  width: 450px;
   text-align: center;
   border: 2px solid #A2A3BB;
   border-radius: 1rem;
@@ -19,8 +19,8 @@ body {
 #placesPage{ 
   font-size: 2rem;
   margin: auto;
-  padding: 1rem;
-  width: 95%;
+  padding: 2rem;
+  width: 90%;
   text-align: center;
   border: 2px solid #DAF0EE;
   border-radius: 1rem;
@@ -48,9 +48,9 @@ body {
   display: flex;
   min-width: fit-content;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 75%;
+  width: 65%;
   padding: 1rem;
   margin: auto;
 }

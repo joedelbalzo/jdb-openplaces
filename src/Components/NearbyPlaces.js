@@ -238,10 +238,10 @@ const NearbyPlaces = ()=> {
           key={category}
 
           variant="outlined" 
-          // size="large" 
           sx={{
             fontSize: '2rem',
-            marginBottom: '1rem',
+            marginBottom: .4,
+            mx: .4,
             backgroundColor: selectedCategory === category ? '#1C5D99;' : 'transparent',
             color: selectedCategory === category ? 'white' : 'black',
             "&:hover": {

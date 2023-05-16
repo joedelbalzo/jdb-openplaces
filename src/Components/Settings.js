@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { editUserSettings } from '../store';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -13,6 +14,7 @@ import { makeStyles } from '@mui/styles';
 const Settings = () => {
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   if (!auth) {
     return 'wtf';
@@ -60,6 +62,7 @@ const Settings = () => {
   const onSubmit = (ev, auth) => {
     ev.preventDefault();
     dispatch(editUserSettings({auth, username, settingRadius, settingHomeLat, settingHomeLng, settingFavCategories}))
+    navigate('/places')
   };
 
 
@@ -126,7 +129,7 @@ const Settings = () => {
             <Grid container spacing={2} alignItems="flex-start" justifyContent='flex-start'>
                 {googleTypes.map((category, idx) => (
                   
-                <Grid item xs={8} sm={6} md={4} 
+                <Grid item xs={8} sm={6} md={6} 
                 sx={{ textAlign: 'left', fontSize:"2rem", margin:"-1rem", padding: "-1rem"}}
                 key={category}>
 
