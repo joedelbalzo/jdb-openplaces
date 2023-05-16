@@ -83,7 +83,7 @@ export default function HomeNav() {
 
   return (
     <Box sx={{ flexGrow: 1, justifyContent: "center"}}>
-      <AppBar position="static" sx={{height: "6rem", justifyContent: "center", backgroundColor: "#003b21" }}>
+      <AppBar position="static" sx={{height: "7rem", justifyContent: "center", backgroundColor: "#003b21" }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ flexGrow: 0}}>
             <Tooltip title="Open Pages">
@@ -99,7 +99,7 @@ export default function HomeNav() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: isMobile ? '10%' : '7%'}}
+              sx={{ mt: isMobile ? '10%' : '7%', ml: "10px"}}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -139,16 +139,16 @@ export default function HomeNav() {
             sx={{ 
               margin: "auto",
               flexGrow: 1, 
-              fontSize: '2.5rem', 
+              fontSize: isMobile ? "3.5rem" :'2.5rem', 
               ":hover": {cursor:"pointer"},
-              maxWidth: 'calc(100% - 200px)',
+              maxWidth: 'calc(100% - 220px)',
               textAlign: 'center'
             }}
           >
            Open Places 
           </Typography>    
   
-          {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem",  width: "50px", textTransform: 'capitalize'}} onClick={()=> _logout()}>Logout</Button> : 
+          {auth.id ? <Button color="inherit" sx={{fontSize: "1.5rem",  mr: "10px", width: "50px", textTransform: 'capitalize'}} onClick={()=> _logout()}>Logout</Button> : 
           <Button color="inherit" sx={{fontSize: "1.5rem", width: "100px",  textTransform: 'capitalize' }} onClick={()=>navigateTo()}>Login</Button>}
         </Toolbar>
       </AppBar>
