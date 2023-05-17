@@ -2,31 +2,28 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const axios = require("axios");
-const Place = require('../db/Place')
-require('dotenv').config({path: 'env.js'})
+const Place = require("../db/Place");
+const { isLoggedIn } = require("./middleware");
 
-const apiKey = process.env.API_KEY
+require("dotenv").config({ path: "env.js" });
 
+const apiKey = process.env.API_KEY;
 
 //prefix is /api/places
-app.get('/', async(req,res,next) =>{
-  try{
-    
-    res.send(await Place.findAll())
+app.get("/", async (req, res, next) => {
+  try {
+    res.send(await Place.findAll());
+  } catch (err) {
+    err;
   }
-  catch(err){
-    err
-  }
-})
+});
 
-app.get('/nearby', async(req, res, next) => {
-  try{
-    res.send(await Place.findAll())
+app.get("/nearby", async (req, res, next) => {
+  try {
+    res.send(await Place.findAll());
+  } catch (err) {
+    next(err);
   }
-  catch(err){
-    next(err)
-  }
-
 
   // const { lat, lng, radius, type } = req.query;
   // console.log(lat, lng, radius, type)
@@ -40,8 +37,19 @@ app.get('/nearby', async(req, res, next) => {
   //   catch(err){
   //     console.log(err)
   //   }
+});
 
+app.put("/nearby/:id", isLoggedIn, async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { notes, rating } = req.body;
+    console.log(notes, rating);
+    const place = await Place.findByPk(req.params.id);
+    await place.update({ notes, rating });
+    res.send(place);
+  } catch (err) {
+    next(err);
   }
-);
+});
 
-module.exports = app
+module.exports = app;
